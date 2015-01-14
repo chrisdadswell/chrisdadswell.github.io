@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>How-To: Fargo Self-Hosted Publishing - Hosting the fargoPublisher</title>
+		<meta charset='utf-8'> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<script>var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-48616896-1']); _gaq.push(['_setDomainName', 'chrisdadswell.co.uk']); _gaq.push(['_trackPageview']); (function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
+		<!-- useBootstrap -->
+	<link href="http://static.smallpicture.com/bootswatch/readable/bootstrap.min.css" rel="stylesheet" />
+	<script src="http://static.smallpicture.com/bootstrap/js/jquery-1.9.1.min.js"></script>
+	<script src="http://static.smallpicture.com/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://static.smallpicture.com/concord-assets/fontawesome/4.1.0/css/font-awesome.min.css">
+		<!-- useSmallPictStyles -->
+	<link href="http://fargo.io/cms/platform.css?v=0.48" rel="stylesheet">
+	<script src="http://fargo.io/cms/platform.js?v=0.48"></script>
+	<script>
+		var pagetable = {
+    "opmlUrl": "",
+    "opmlTitle": "Articles",
+    "opmlOwnerName": "Chris Dadswell",
+    "opmlOwnerEmail": "chrisdadswell@gmail.com",
+    "opmlDateModified": "Sun, 19 Oct 2014 17:03:40 GMT",
+    "opmlExpansionState": "1",
+    "opmlLastCursor": "0",
+    "opmlOwnerProfile": "scriven.chrisdadswell.co.uk/about.html",
+    "opmlLinkPublicUrl": "https://dl.dropbox.com/s/ikd20gpzlebbu6i/articles.opml?dl=0",
+    "opmlLink": "",
+    "opmlDescription": "",
+    "opmlDateCreated": "",
+    "opmlLongTitle": "",
+    "opmlOwnerId": "",
+    "opmlFeed": "",
+    "menuname": "default",
+    "googleAnalyticsID": "UA-48616896-1",
+    "domain": "chrisdadswell.co.uk",
+    "bootstrapTheme": "readable",
+    "type": "outline",
+    "slogan": "Greetings, citizen of Planet Earth. We are your overlords. :-)",
+    "disqusGroupName": "smallpict",
+    "siteTimeZone": "-2",
+    "dateFormat": "%A, %B %e, %Y at %l:%M %p",
+    "flIndexPage": false,
+    "flDisqusComments": true,
+    "flStoryTextOnIndexPage": false,
+    "flNonDocHeadsOnIndexPage": true,
+    "flStoryDateOnIndexPage": false,
+    "storyDateFormat": "%D; %r",
+    "maxStoriesOnIndexPage": 25,
+    "maxStoryList": 25,
+    "authorTwitterAccount": "@chrisdadswell",
+    "authorFacebookAccount": "",
+    "authorProfileUrl": "scriven.chrisdadswell.co.uk/about.html",
+    "titleColor": "white",
+    "siteFolder": "blogs/scriven/articles/",
+    "flProfile": false,
+    "ctLevelsOnIndexPage": 1,
+    "blogHomeItemCount": 25,
+    "flPgfPermaLinks": false,
+    "flFixedMenu": "false",
+    "maxStreamDays": "14",
+    "flMarkdown": true,
+    "leftIndent": 0,
+    "text": "How-To: Fargo Self-Hosted Publishing - Hosting the fargoPublisher",
+    "created": "Tue, 17 Jun 2014 11:56:04 GMT",
+    "description": "",
+    "path": "articles/howToSelfPublishingFargoBlog",
+    "subheadColor": "white",
+    "flMapHeader": "false",
+    "mapLatitude": "40.774295",
+    "mapLongitude": "-73.970833",
+    "mapType": "roadmap",
+    "mapZoom": "14",
+    "flSnapEnabled": "true",
+    "flHideByline": "false",
+    "backgroundImage": "",
+    "streamHighlightColor": "yellow",
+    "streamTextFrameColor": "whitesmoke",
+    "streamVersion": "2",
+    "flEmojify": "true",
+    "authorGithubAccount": "chrisdadswell",
+    "authorLinkedInAccount": "christiandadswell",
+    "name": "howToSelfPublishingFargoBlog",
+    "isFeedItem": "true",
+    "cssUrl": "http://static.smallpicture.com/bootswatch/readable/bootstrap.min.css",
+    "menuTitle": "Articles",
+    "now": "Sun Oct 19 2014 18:03:41 GMT+0100 (GMT Summer Time)",
+    "copyright": "&copy; 2014 Chris Dadswell.",
+    "url": "/articles/howToSelfPublishingFargoBlog.html"
+}; //12/12/13 by DW
+		</script>
+		<style>
+			@media only screen 
+			and (min-device-width : 320px) 
+			and (max-device-width : 480px) {
+				.navbar .nav>li {
+					display: none;
+					height: 0;
+					}
+				.divFargoSocialMediaLinks {
+					display: none;
+					}
+				.container {
+					margin-top: 10px;
+					width: 90%;
+					}
+				.divFargoMarkdown p {
+					font-size: 17px;
+					line-height: 140%;
+					}
+				h2 {
+					font-size: 24px;
+					line-height: 140%;
+					}
+				.divHeadlineUnit {
+					margin-bottom: 5px;
+					}
+				.divPrevNext {
+					font-size: 1.2em;
+					}
+				.divBreadcrumbs {
+					display: none;
+					font-size: 15px;
+					}
+				.breadcrumb>li>.divider {
+					padding: 0;
+					padding-left: 1px;
+					}
+				.spSlogan {
+					display: none;
+					}
+				}
+			</style>
+		<style>
+			.divOutlineImage {
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				right: 0;
+				
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				
+				z-index: -1;
+				opacity: 1;
+				}
+			.divTextInFrontOfImage {
+				background-color: white; 
+				opacity: .90;
+				padding: 1.5em;
+				border:2px solid whitesmoke;
+				}
+			.spSlogan {
+				display: none;
+				}
+			</style>
+		<style>
+			.divOutlineNoMarkdown {
+				font-size: 20px;
+				line-height: 150%;
+				}
+			.divOutlineNoMarkdown li {
+				line-height: 150%;
+				}
+			.divOutlineNoMarkdown li {
+				}
+			.divOutlineNoMarkdown .ulOutlineList {
+				padding: 0;
+				margin: 0;
+				}
+			.divOutlineNoMarkdown .liOutline {
+				list-style-type: none;
+				margin-bottom: .5em;
+				}
+			.divOutlineNoMarkdown .divOutlineHead {
+				font-weight: bold;
+				margin-top: 13px;
+				margin-bottom: 13px;
+				}
+			.divOutlineNoMarkdown .liHasSubs ul {
+				}
+			.divOutlineNoMarkdown .liNoSubs {
+				}
+			.divOutlineNoMarkdown .spOutlineIcon {
+				margin-right: -11px;
+				}
+			.divOutlineNoMarkdown .aOutlineWedgeLink {
+				color: black;
+				}
+			.divOutlineNoMarkdown .aOutlineWedgeLink i {
+				color: black;
+				cursor: pointer;
+				position: relative;
+				width: .5em;
+				left: -1em;
+				}
+			.divOutlineNoMarkdown .aOutlineTextLink {
+				cursor: pointer;
+				color: black;
+				text-decoration: none;
+				}
+			.divOutlineNoMarkdown .spPermalink {
+				}
+			.divOutlineNoMarkdown .spPermalink a {
+				text-decoration: none;
+				color: purple;
+				font-size: 10px;
+				font-weight: normal;
+				vertical-align: top;
+				margin-left: 3px;
+				}
+			.divOutlineNoMarkdown code {
+				display: inline;
+				border: none;
+				color: black;
+				font-size: .85em;
+				}
+			</style>
+		<!-- customStylesScripts -->
+		<style>
+.navbar .brand {
+	font-family: 'Rancho' !important;
+	font-size: 36px !important;
+	font-weight: normal !important;
+	}
+
+
+.divStreamDayText {
+	font-family: 'Ubuntu';
+	font-size: 20px;
+	}
+.divStreamDayHead {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	margin-top: .1em;
+	margin-bottom: .60em;
+	-webkit-margin-after: .60em;
+	}
+.navbar {
+	font-family: 'Ubuntu';
+	font-size: 17px;
+	}
+.body {
+	font-family: 'Ubuntu';
+	}
+
+
+.divFargoSocialMediaLinks {
+	visibility: hidden;
+}
+
+</style>
+		<script>
+			function ecOutline (idnum) { //7/12/14 by DW
+				var c = document.getElementById ("idOutlineWedge" + idnum), idUL = "#idOutlineLevel" + idnum;
+				if (c.className == "fa fa-caret-down") {
+					c.className = "fa fa-caret-right";
+					c.style.color = "black";
+					$(idUL).slideUp (75);
+					}
+				else {
+					c.className = "fa fa-caret-down";
+					c.style.color = "silver";
+					$(idUL).slideDown (75);
+					}
+				}
+			function startupOutlineTemplate () {
+				if ((pagetable.backgroundImage != undefined) && (pagetable.backgroundImage.length > 0)) {
+					var textInFront = document.getElementById ("idTextInFrontOfImage"); 
+					textInFront.className = "divTextInFrontOfImage";
+					
+					var outlineImage = document.getElementById ("idOutlineImage"); 
+					outlineImage.className = "divOutlineImage";
+					outlineImage.style.backgroundImage = "url(\"" + pagetable.backgroundImage + "\")";
+					}
+				}
+			</script>
+		</head>
+	<body>
+		<div class="divFargoSocialMediaLinks"><a class="aSocialMediaLink" id="idTwitterLink" href="http://twitter.com/@chrisdadswell" target="_blank"><i class="fa fa-twitter" style="color: #4099FF; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idFacebookLink" href="http://facebook.com/" target="_blank"><i class="fa fa-facebook" style="color: #4C66A4; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idGithubLink" href="http://github.com/chrisdadswell" target="_blank"><i class="fa fa-github" style="color: black; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idLinkedInLink" href="http://www.linkedin.com/in/chrisdadswell" target="_blank"><i class="fa fa-linkedin" style="color: #069; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idRssLink" href="" target="_blank"><i class="fa fa-rss" style="color: orange; font-weight: bold;"></i></a>
+</div>
+		
+<div class="navbar navbar-static-top" id="idFargoNavbar">
+	<div class="navbar-inner">
+		<div class="navbar-container">
+			<a class="brand" href="">Articles</a>
+			<ul class="nav">
+				<li><a href="http://radio3.io/users/chrisdadswell" target="_blank">Linkblog</a></li>
+				<li><a href="http://rivers.chrisdadswell.co.uk" target="_blank">River</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Links&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://www.scripting.com">Scripting News</a></li>
+						<li><a href="http://radio3.io/">Radio3</a></li>
+						<li><a href="http://littlecardeditor.com">Little Card Editor</a></li>
+						<li class="divider"></li>
+						<li><a href="http://rss.chrisdadswell.co.uk/opml.php?op=publish&key=ivftyv53b090160e7d8">Public OPML Feed</a></li>
+						<li><a href="http://littlecardeditor.com/users/chrisdadswell/rss.xml">Little Card Editor Feed</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/spendingTimeWithDocker.html">Spending time with Docker</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howToSelfPublishingFargoBlog.html">How-To: Fargo Self-Publishing</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howtofargoselfpublishingstorageoptions.html">How-To: Fargo Self-Publishing - VPS Storage</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howToSetupAFargoRiverOfNews.html">How To: Setting up a River of news</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/fargoScripts/">Fargo Scripts</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Snippets&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliCreatingLocalUsersAndRolesOnEsxi55u2.html" target="_blank"><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliCreatingLocalUsersAndRolesOnEsxi55u2.html">PowerCLI: Creating local users and roles on ESXi 5.5U2</a></a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliGettingAndSettingRoundRobinPlusIOPSESXi.html">PowerCLI: Getting and Setting Round Robin Pathing Policies on ESXi 5.5 + IOPS</a></li>
+						</ul>
+					</li>
+				<li><a href="http://scriven.chrisdadswell.co.uk/about.html">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+		<div class="divFargoOutlineBody">
+			<div id="idOutlineImage">
+				<div id="idOutlineContainer" class="container">
+					<div id="idTextInFrontOfImage">
+						<div class="divHeadlineUnit" id="idHeadlineUnit">
+							<div class="divPrevNext">
+								<div class="divPrevNextLinks"><a href="articles/howtofargoselfpublishingstorageoptions.html" title="How-To: Fargo Self-Hosted Publishing - Hosting Fargo blog content" ><i class="fa fa-arrow-left" style="color: black"></i></a>&nbsp;&nbsp;<a href="articles/howToSetupAFargoRiverOfNews.html" title="How-To: Setting up a River of news" ><i class="fa fa-arrow-right" style="color: black"></i></a></div>
+								</div>
+							<div class="divBreadcrumbs" id="idBreadcrumbs">
+								<ul id="idBreadcrumbList" class="breadcrumb"><li><a href="">Home</a><span class="divider">/</span><li><a href="/articles">Articles</a></li></ul>
+								</div>
+							<h2>How-To: Fargo Self-Hosted Publishing - Hosting the fargoPublisher</h2>
+							</div>
+						<div class="divFargoMarkdown" id="idFargoMarkdown"><p><a href="https://twitter.com/share?text=How-To%3A%20Fargo%20Self-Hosted%20Publishing&amp;url=http://scriven.chrisdadswell.co.uk/users/scriven/2014/06/19/fargoSelfPublishingPart2" target="_blank">Tweet This Post</a></p>
+
+<p><b>Introduction</b></p>
+
+<ul>
+<li><p>This post is being written on my self hosted Fargo published site. It has taken  me some time to work out how this is done and I'd like to give back to the community by showing you how I managed it. It's not all there yet, but for the most part it works and it has been a very interesting journey. </p></li>
+<li><p>I've been following Fargo for about a year now and have found it an extremely captivating way to edit and post content. I've used all the popular "blogging platforms" out there, although I freely admit I don't post up content as much as I'd like. I've also been following Dave Winer for longer than this and find him a very inspiring character to learn a great deal from. I also like that he is very attentive to those that follow him on the <a href="http://fargo.io/docs/support.html">groups </a>and nearly always responds. Not too shabby!</p></li>
+<li><p>I've been ingesting RSS for longer than I can remember and it was only really a year or so ago, when Google Reader disappeared, that I took an active interest in what RSS was really about and what can be achieved with it and where it is going.</p></li>
+<li><p>I love the Fargo platform and it's been a joy to watch it progress and finally get it working on a self hosted platform. As Dave has so kindly allowed it to be used. </p></li>
+<li><p>I've read a lot of material to get to this point and I'm also quite fortunate that my day job and experience has helped a great deal in the process. But I hope the following will help all those wanting to achieve the same aim of self hosting a Fargo blog.</p></li>
+<li><p>"Enough of this" I hear you say, let us move onto the good stuff. <img title=':bomb:' alt=':bomb:' class='emoji' src='http://fargo.io/code/emojify/images/emoji/bomb.png' align='absmiddle' /></p></li>
+</ul>
+
+<p><b>fargoPublisher and fargoPublisherSetup on GitHub</b></p>
+
+<ul>
+<li><p><b><a href="https://github.com/scripting/fargoPublisher">fargoPublisher on GitHub</a></b></p></li>
+<li><p><b><a href="https://github.com/chrisdadswell/fargoPublisherSetup">fargoPublisherSetup on Github</a></b> <em>updated 2014/09/01</em></p>
+
+<ul>-</ul></li>
+</ul>
+
+<p><b>Technical Overview</b></p>
+
+<ul>
+<li><img src="https://dl.dropbox.com/s/fchscw6zgloty5m/Fargo%20Architecture.png"></li>
+</ul>
+
+<p><b>Setting up AWS</b></p>
+
+<ul>
+<li><p>It goes without saying that you need an <a href="http://aws.amazon.com/">Amazon AWS account</a> (free for 12 months)</p></li>
+<li><p>Log into the AWS console and create a <a href="https://console.aws.amazon.com/iam/home?region=eu-west-1#users">new user</a></p></li>
+<li><p>As part of the creation of a new user you will be able to get the Access Key ID and Secret Access Key these are needed for the fargoPublisher later on so please keep a note of them</p></li>
+<li><p>Create an S3 bucket (US Default) to hold the static files that the Fargo publisher will produce. I called mine "<i>scriven.chrisdadswell.co.uk</i>"</p></li>
+<li><p>You now need to enable "<i>website hosting</i>" for this bucket</p>
+
+<ul><li><p>Click on the bucket and select the "Properties" button on the top right. </p></li>
+<li><p>Click the radio button to enable website hosting</p></li>
+<li><p>Enter "<i>Index.html</i>" in the Index Document field</p></li>
+<li><p>Save</p></li>
+<li><p>Make a note of the "endpoint" url above or copy to notepad. This will also be needed later</p></li></ul></li>
+<li><p>Finally, set-up a bucket policy. This is needed for access write access to the bucket.</p>
+
+<ul><li>Read the "Granting Read-Only Permission to an Anonymous User" section on this <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html">here</a> </li></ul></li>
+<li><p>AWS setup is now complete</p></li>
+</ul>
+
+<p><b>Setting up DNS (CloudFlare)</b></p>
+
+<ul>
+<li><p>My DNS is managed at CloudFlare, I have a free account. Your DNS management may vary.</p></li>
+<li><p>Create an "A" record for the fargoPublisher host, I called my "A" record "pub" and entered the public IP address to the host. It has to be an IP address for this type of record.</p></li>
+<li><p>Next, create a  "CNAME" record that points to the S3 bucket URI. I called my "scriven". This bucket that holds all the Fargo user and stats data. This DNS record points to the S3 bucket endpoint we recorded above in the AWS console.</p></li>
+</ul>
+
+<p><b>Setting up the Linux server</b></p>
+
+<ul>
+<li><p>I am running fargoPublisher on a Debian 7 VM that I purchased outright from CloudAtCost.com for $38 and comes with a fixed IP <img title=':smiley:' alt=':smiley:' class='emoji' src='http://fargo.io/code/emojify/images/emoji/smiley.png' align='absmiddle' /></p></li>
+<li><p>Login into your system as the root user</p></li>
+<li><p>Prerequisite software to install as root:</p>
+
+<ul><li><code>apt-get install sudo git curl</code></li></ul></li>
+<li><p>Create a new user for Fargo (optional username). I'm using "<i>fargo</i>"</p>
+
+<ul><li><p><code>useradd -G sudo -d /home/fargo -m -s /bin/bash fargo</code></p></li>
+<li><p><code>passwd fargo</code></p></li>
+<li><p><code>chown -R fargo:user /home/fargo</code></p></li>
+<li><p><code>usermod -G sudo fargo</code></p></li></ul></li>
+<li><p><a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager">Build</a> Node.js from source (Source: Joyent on GitHub) - The build process takes a little while. Why not go grab a drinky and a bit to eat <img title=':cake:' alt=':cake:' class='emoji' src='http://fargo.io/code/emojify/images/emoji/cake.png' align='absmiddle' /></p>
+
+<ul><li><p><code>apt-get install python g++ make checkinstall fakeroot</code></p></li>
+<li><p><code>src=$(mktemp -d) &amp;&amp; cd $src</code></p></li>
+<li><p><code>wget -N http://nodejs.org/dist/node-latest.tar.gz</code></p></li>
+<li><p><code>tar xzvf node-latest.tar.gz &amp;&amp; cd node-v*</code></p></li>
+<li><p><code>./configure</code></p></li>
+<li><p><code>fakeroot checkinstall -y --install=no --pkgversion $(echo $(pwd) | sed -n -re's/.+node-v(.+)$/\1/p') make -j$(($(nproc)+1)) install</code></p></li>
+<li><p><code>sudo dpkg -i node_*</code> </p></li></ul></li>
+<li><p>Install <b>N</b>ode <b>P</b>ackage <b>M</b>anager or npm</p>
+
+<ul><li><code>curl https://www.npmjs.org/install.sh | sudo sh</code></li></ul></li>
+<li><p>Test node is installed by returning a version</p>
+
+<ul><li><code>node -v</code></li></ul></li>
+<li><p>Switch to the fargo user to install the required npm modules</p>
+
+<ul><li><code>su - fargo</code></li></ul></li>
+<li><p>Install fargoPublisher node pre-requisites</p>
+
+<ul><li><p><code>sudo npm install aws-sdk url request</p></li>
+<li><p>sudo npm install forever -g</code></p></li></ul></li>
+</ul>
+
+<p><b>Install and configure fargoPublisher</b></p>
+
+<ul>
+<li><p>Read the <a href="https://github.com/scripting/fargoPublisher/blob/master/README.md">fargoPublisher README</a></p></li>
+<li><p>Clone the fargoPublisher into the fargo users home directory</p>
+
+<ul><li><code>git clone https://github.com/scripting/fargoPublisher.git</code></li></ul></li>
+<li><p>Subsequent updates can be retrieved by running the following from within the fargoPublisher directory</p>
+
+<ul><li><code>git pull origin</code></li></ul></li>
+<li><p>We will now set-up the required export variables. I did this in my fargo users <code><i>.profile</i></code> file so that the variables get exported when the fargo user logs onto the system. The <code>.profile</code> file is a hidden file within the fargo users home directory</p>
+
+<ul><li><p><code>cd ~</code></p></li>
+<li><p><code>sudo nano .profile</code></p></li></ul></li>
+<li><p>NOTE: My server also runs other web services, so I have chosen not to run it on the standard port of 80, but on 8080 as you will see later. </p></li>
+<li><p>Paste the following and change with your values for AWS keys, domain names and port</p>
+
+<ul><li><p><code>## AWS IAM fargo user keys</code></p></li>
+<li><p><code>export AWS_ACCESS_KEY_ID=<ACCESS KEY ID></code></p></li>
+<li><p><code>export AWS_SECRET_ACCESS_KEY=<SECRET ACCESS KEY></code></p></li>
+<li><p><code>## Exporting variables for fargoPublisher</code> </p></li>
+<li><p><code>export fpHostingPath=/scriven.chrisdadswell.co.uk/users/</code></p></li>
+<li><p><code>export fpDataPath=/scriven.chrisdadswell.co.uk/data/</code></p></li>
+<li><p><code>export fpDomain=chrisdadswell.co.uk</code></p></li>
+<li><p><code>export fpServerPort=8080</code></p></li>
+<li><p><code>export fpRedirect=false</code></p></li></ul></li>
+<li><p>CTRL O and CTRL X to save and quit</p></li>
+<li><p>Source the <code>.profile</code> to export the variables. This essentially runs the <code>.profile</code> as if we'd logged in</p>
+
+<ul><li><code>source .profile</code></li></ul></li>
+<li><p>Test the fargoPublisher runs and watch the output. When the fargoPublisher is running you will see the variables that were exported on screen and it will appear to be doing nothing.</p>
+
+<ul><li><code>cd fargoPublisher &amp;&amp; node publisher.js</code></li></ul></li>
+<li><p>This should return by showing the variables set and sit stationary without a prompt in the running state</p></li>
+<li><p>Keep the SSH session open for now.</p></li>
+<li><p>Fire up a browser and test that the publisher is responding. Obviously change the domain and port below to that of the one you have set-up.</p>
+
+<ul><li><code>http://<publisher url>:8080/version</code></li></ul></li>
+<li><p>This should return "0.96" in the body of the page. This proves the publisher is responding and ready to go. <img title=':thumbsup:' alt=':thumbsup:' class='emoji' src='http://fargo.io/code/emojify/images/emoji/thumbsup.png' align='absmiddle' /></p></li>
+</ul>
+
+<p><b>Testing fargoPublisher</b></p>
+
+<ul>
+<li><p>Head over to <a href="http://fargo.io">Fargo.io</a> in your browser. As mentioned above I found it useful at this stage to keep the SSH session open to your Debian server that is currently running the fargoPublisher. </p></li>
+<li><p>NOTE: We will run the publisher in the background using "forever" once testing is complete.</p></li>
+<li><p>Create  a new outline and name it "testing1" for the sake of this test. You can delete it from Dropbox once we are done testing</p></li>
+<li><p>Click the "+" icon on the left and make an entry</p></li>
+<li><p>Next we will change the CMS publisher server address</p></li>
+<li><p>Go to the Fargo "Settings..." This can be found by clicking your name on the far right of the title bar in Fargo.</p></li>
+<li><p>Click the CMS tab and enter the publisher server details. Change the domain and port to match your details. </p>
+
+<ul><li><code>http://pub.chrisdadswell.co.uk:8080</code></li></ul></li>
+<li><p>This is to tell Fargo that <i>your</i> publisher will be publishing files and not the default publisher over at "pub.fargo.io"</p></li>
+<li><p>Give that a few ticks to save off and update in the background before continuing</p></li>
+<li><p>Next we will publically name the outline, this is the point where will see if the publisher and everything else we have setup is working!</p></li>
+<li><p>Make the SSH session visible that is running the publisher. It will show debug information as we start to type an outline name. </p></li>
+<li><p>Make sure the "<i>testing1</i>" outline is selected then</p>
+
+<ul><li>File | Name outline...</li></ul></li>
+<li><p>Enter "<i>testing1</i>" - Note that you will see the publisher updating as you enter each letter. If you don't see any output it would suggest something isn't quite working <img title=':thumbsdown:' alt=':thumbsdown:' class='emoji' src='http://fargo.io/code/emojify/images/emoji/thumbsdown.png' align='absmiddle' /></p></li>
+<li><p>Press OK to confirm the public outline name. If all went well Fargo will report that the public outline naming has been successful.</p></li>
+<li><p>Now we want to render the pages.</p>
+
+<ul><li>File | Render All Pages...</li></ul></li>
+<li><p>Give Fargo a few seconds to render the pages into the bucket. :lightbulb: Tip: If you are doing all this from a PC and have Dropbox installed with notifications set, you will see when Fargo is publishing.</p></li>
+<li><p>We are now at a point where we have a public outline that has been published by your fargoPublisher and its static content rendered to your S3 bucket. :child: :hi5: :child:</p></li>
+<li><p>As you would of read above, fargoPublisher has a concept of users. These are in actual effect the names of the outlines you create. If you log into your S3 account and look at the bucket you are using you will see "<i>data</i>" and "<i>users</i>" folders. </p></li>
+<li><p>Inside the "<i>users</i>" folder you will see a "<i>testing1</i>" user with the static contents that the fargoPublisher rendered. Neat hey.</p></li>
+<li><p>To get access to the pages in your browser go to http://yourdomain/users/testing1</p></li>
+<li><p>And there you have it, a self published and static hosted blog!</p></li>
+ - 
+</ul>
+
+<p><b>Backgrounding the fargoPublisher</b> </p>
+
+<ul>
+<li><p>Up to this point we have been running the fargoPublisher in the foreground. This means terminating the process or logging off will terminate the fargoPublisher.</p></li>
+<li><p>To address this we can run the publisher in the background using an npm module called "<i>forever</i>". This essentially runs the node as a service that is controllable and creates logs.</p></li>
+<li><p>To do this is very straight-forward as I will show below. First we need to terminate the fargoPublisher</p>
+
+<ul><li><code>CTRL c</code></li></ul></li>
+<li><p>From within the fargoPublisher directory, run the following command</p>
+
+<ul><li><code>forever start publisher.js</code></li></ul></li>
+<li><p>This will start the publisher and you will see some output and be returned to the command line. At this point fargoPublisher is running in the background.</p></li>
+<li><p>If at any point you want to stop the publisher, do the following</p>
+
+<ul><li><code>forever stopall</code></li></ul></li>
+<li><p>or</p>
+
+<ul><li><code>forever stop publisher.js</code></li></ul></li>
+<li><p>In the next section I will demonstrate how to run the fargoPublisher at start-up. This is needed if the server is needing to be rebooted at any time.</p></li>
+</ul>
+
+<p><b>Running fargoPublisher at boot</b></p>
+
+<ul>
+<li><p>Again, this is a really simple config on the server side. I use the "<i>crontab</i>" to start the fargoPublisher at boot</p>
+
+<ul><li><code>crontab -e</code></li></ul></li>
+<li><p>Scroll down to an empty line and paste the following</p>
+
+<ul><li><code>@reboot /usr/local/bin/forever start /usr/local/bin/node /home/fargo/fargoPublisher/publisher.js</code> </li></ul></li>
+<li><p>CTRL o then CTRL x (for nano)</p></li>
+<li><p>or</p></li>
+<li><p>ESC wq <for vi></p></li>
+<li><p>Running the following will show the cron job</p>
+
+<ul><li><code>crontab -l</code></li></ul></li>
+<li><p>On a system reboot now the fargoPublisher will startup without any intervention required. </p></li>
+<li><p>One final thing, to list what node processes you have running with forever, type</p>
+
+<ul><li><code>forever list</code></li></ul></li>
+<li><p>Fin!</p></li>
+</ul>
+
+<p><b>Removing Fargo Users</b></p>
+
+<ul>
+<li>Coming soon ...</li>
+</ul>
+
+<p><b>What I haven't been able to work out</b></p>
+
+<ul>
+<li><p>I haven't quite worked out what is happening with domains for user accounts (see the "<a href="http://fargo.io/docs/contentManagement/runningYourOwnServer.html">remaining loose-ends</a>"). Dave manages to allow users to go to say "scriven.smallpict.com" and the content is generated. At the moment I have to hard code the entry point to the content under /users/scriven within the "Outline Settings". E.g., http://scriven.chrisdadswell.co.uk/users/scriven.</p></li>
+<li><p>Ideally I'd want content to be delivered from http://scriven.chrisdadswell.co.uk</p></li>
+</ul>
+
+<p><b>Credits</b></p>
+
+<ul>
+<li><p>Dave Winer for giving us Fargo and River and for his endless enthusiasm, insight and RSS!</p></li>
+<li><p>Frank McPherson for spotting some missives in my article</p></li>
+<li><p>Ben and Cogs.com for his feedback</p></li>
+<li><p>The people on the smallpict Google groups</p></li>
+</ul></div>
+						<div class="divFooterText">
+							<hr>
+							<p style="float: right;">Last built: Sun, Oct 19, 2014 at  3:03 PM</p>
+							<script>var disqus_identifier = "Tue, 17 Jun 2014 11:56:04 GMT";</script><a onclick="showHideComments ()"><span id="idShowHideComments" style="cursor: pointer;"></span></a><div class="divDisqusComments" id="idDisqusComments" style="visibility: visible;" ><div id="disqus_thread"></div></div><script type="text/javascript" src="http://disqus.com/forums/smallpict/embed.js"></script></div>
+							<div class="divByline" id="idByline">By <a href="scriven.chrisdadswell.co.uk/about.html" target="_blank">Chris Dadswell</a>, <span id="idWhenCreated">Tuesday, June 17, 2014 at  9:56 AM</span>.  <span class="spSlogan" style="float: right;"><i>You Can't, You Won't And You Don't Stop</i></span></div>
+							</div>
+						</div>
+						</div>
+				</div>
+			</div>
+		<script>
+			startupFargoPlatform ();
+			startupOutlineTemplate ();
+			</script>
+		</body>
+	</html>

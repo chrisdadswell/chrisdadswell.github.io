@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Spending some time with Docker</title>
+		<meta charset='utf-8'> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<script>var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-48616896-1']); _gaq.push(['_setDomainName', 'chrisdadswell.co.uk']); _gaq.push(['_trackPageview']); (function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
+		<!-- useBootstrap -->
+	<link href="http://static.smallpicture.com/bootswatch/readable/bootstrap.min.css" rel="stylesheet" />
+	<script src="http://static.smallpicture.com/bootstrap/js/jquery-1.9.1.min.js"></script>
+	<script src="http://static.smallpicture.com/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://static.smallpicture.com/concord-assets/fontawesome/4.1.0/css/font-awesome.min.css">
+		<!-- useSmallPictStyles -->
+	<link href="http://fargo.io/cms/platform.css?v=0.48" rel="stylesheet">
+	<script src="http://fargo.io/cms/platform.js?v=0.48"></script>
+	<script>
+		var pagetable = {
+    "opmlUrl": "",
+    "opmlTitle": "Articles",
+    "opmlOwnerName": "Chris Dadswell",
+    "opmlOwnerEmail": "chrisdadswell@gmail.com",
+    "opmlDateModified": "Thu, 23 Oct 2014 17:50:34 GMT",
+    "opmlExpansionState": "",
+    "opmlLastCursor": "10",
+    "opmlOwnerProfile": "scriven.chrisdadswell.co.uk/about.html",
+    "opmlLinkPublicUrl": "https://dl.dropbox.com/s/ikd20gpzlebbu6i/articles.opml?dl=0",
+    "opmlLink": "",
+    "opmlDescription": "",
+    "opmlDateCreated": "",
+    "opmlLongTitle": "",
+    "opmlOwnerId": "",
+    "opmlFeed": "",
+    "menuname": "default",
+    "googleAnalyticsID": "UA-48616896-1",
+    "domain": "chrisdadswell.co.uk",
+    "bootstrapTheme": "readable",
+    "type": "outline",
+    "slogan": "It's even worse than it appears.",
+    "disqusGroupName": "smallpict",
+    "siteTimeZone": "-2",
+    "dateFormat": "%A, %B %e, %Y at %l:%M %p",
+    "flIndexPage": false,
+    "flDisqusComments": true,
+    "flStoryTextOnIndexPage": false,
+    "flNonDocHeadsOnIndexPage": true,
+    "flStoryDateOnIndexPage": false,
+    "storyDateFormat": "%D; %r",
+    "maxStoriesOnIndexPage": 25,
+    "maxStoryList": 25,
+    "authorTwitterAccount": "@chrisdadswell",
+    "authorFacebookAccount": "",
+    "authorProfileUrl": "scriven.chrisdadswell.co.uk/about.html",
+    "titleColor": "white",
+    "siteFolder": "blogs/scriven/articles/",
+    "flProfile": false,
+    "ctLevelsOnIndexPage": 1,
+    "blogHomeItemCount": 25,
+    "flPgfPermaLinks": false,
+    "flFixedMenu": "false",
+    "maxStreamDays": "14",
+    "flMarkdown": true,
+    "leftIndent": 0,
+    "text": "Spending some time with Docker",
+    "created": "Wed, 01 Oct 2014 14:34:08 GMT",
+    "description": "",
+    "path": "spendingTimeWithDocker",
+    "subheadColor": "white",
+    "flMapHeader": "false",
+    "mapLatitude": "40.774295",
+    "mapLongitude": "-73.970833",
+    "mapType": "roadmap",
+    "mapZoom": "14",
+    "flSnapEnabled": "true",
+    "flHideByline": "false",
+    "backgroundImage": "",
+    "streamHighlightColor": "yellow",
+    "streamTextFrameColor": "whitesmoke",
+    "streamVersion": "2",
+    "flEmojify": "true",
+    "authorGithubAccount": "chrisdadswell",
+    "authorLinkedInAccount": "christiandadswell",
+    "menutitle": "Articles",
+    "name": "spendingTimeWithDocker",
+    "cssUrl": "http://static.smallpicture.com/bootswatch/readable/bootstrap.min.css",
+    "menuTitle": "Articles",
+    "now": "Thu Oct 23 2014 18:50:35 GMT+0100 (GMT Summer Time)",
+    "copyright": "&copy; 2014 Chris Dadswell.",
+    "url": "/spendingTimeWithDocker.html"
+}; //12/12/13 by DW
+		</script>
+		<style>
+			@media only screen 
+			and (min-device-width : 320px) 
+			and (max-device-width : 480px) {
+				.navbar .nav>li {
+					display: none;
+					height: 0;
+					}
+				.divFargoSocialMediaLinks {
+					display: none;
+					}
+				.container {
+					margin-top: 10px;
+					width: 90%;
+					}
+				.divFargoMarkdown p {
+					font-size: 17px;
+					line-height: 140%;
+					}
+				h2 {
+					font-size: 24px;
+					line-height: 140%;
+					}
+				.divHeadlineUnit {
+					margin-bottom: 5px;
+					}
+				.divPrevNext {
+					font-size: 1.2em;
+					}
+				.divBreadcrumbs {
+					display: none;
+					font-size: 15px;
+					}
+				.breadcrumb>li>.divider {
+					padding: 0;
+					padding-left: 1px;
+					}
+				.spSlogan {
+					display: none;
+					}
+				}
+			</style>
+		<style>
+			.divOutlineImage {
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				right: 0;
+				
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				
+				z-index: -1;
+				opacity: 1;
+				}
+			.divTextInFrontOfImage {
+				background-color: white; 
+				opacity: .90;
+				padding: 1.5em;
+				border:2px solid whitesmoke;
+				}
+			.spSlogan {
+				display: none;
+				}
+			</style>
+		<style>
+			.divOutlineNoMarkdown {
+				font-size: 20px;
+				line-height: 150%;
+				}
+			.divOutlineNoMarkdown li {
+				line-height: 150%;
+				}
+			.divOutlineNoMarkdown li {
+				}
+			.divOutlineNoMarkdown .ulOutlineList {
+				padding: 0;
+				margin: 0;
+				}
+			.divOutlineNoMarkdown .liOutline {
+				list-style-type: none;
+				margin-bottom: .5em;
+				}
+			.divOutlineNoMarkdown .divOutlineHead {
+				font-weight: bold;
+				margin-top: 13px;
+				margin-bottom: 13px;
+				}
+			.divOutlineNoMarkdown .liHasSubs ul {
+				}
+			.divOutlineNoMarkdown .liNoSubs {
+				}
+			.divOutlineNoMarkdown .spOutlineIcon {
+				margin-right: -11px;
+				}
+			.divOutlineNoMarkdown .aOutlineWedgeLink {
+				color: black;
+				}
+			.divOutlineNoMarkdown .aOutlineWedgeLink i {
+				color: black;
+				cursor: pointer;
+				position: relative;
+				width: .5em;
+				left: -1em;
+				}
+			.divOutlineNoMarkdown .aOutlineTextLink {
+				cursor: pointer;
+				color: black;
+				text-decoration: none;
+				}
+			.divOutlineNoMarkdown .spPermalink {
+				}
+			.divOutlineNoMarkdown .spPermalink a {
+				text-decoration: none;
+				color: purple;
+				font-size: 10px;
+				font-weight: normal;
+				vertical-align: top;
+				margin-left: 3px;
+				}
+			.divOutlineNoMarkdown code {
+				display: inline;
+				border: none;
+				color: black;
+				font-size: .85em;
+				}
+			</style>
+		<!-- customStylesScripts -->
+		<style>
+.navbar .brand {
+	font-family: 'Rancho' !important;
+	font-size: 36px !important;
+	font-weight: normal !important;
+	}
+
+
+.divStreamDayText {
+	font-family: 'Ubuntu';
+	font-size: 20px;
+	}
+.divStreamDayHead {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	margin-top: .1em;
+	margin-bottom: .60em;
+	-webkit-margin-after: .60em;
+	}
+.navbar {
+	font-family: 'Ubuntu';
+	font-size: 17px;
+	}
+.body {
+	font-family: 'Ubuntu';
+	}
+
+
+.divFargoSocialMediaLinks {
+	visibility: hidden;
+}
+
+</style>
+		<script>
+			function ecOutline (idnum) { //7/12/14 by DW
+				var c = document.getElementById ("idOutlineWedge" + idnum), idUL = "#idOutlineLevel" + idnum;
+				if (c.className == "fa fa-caret-down") {
+					c.className = "fa fa-caret-right";
+					c.style.color = "black";
+					$(idUL).slideUp (75);
+					}
+				else {
+					c.className = "fa fa-caret-down";
+					c.style.color = "silver";
+					$(idUL).slideDown (75);
+					}
+				}
+			function startupOutlineTemplate () {
+				if ((pagetable.backgroundImage != undefined) && (pagetable.backgroundImage.length > 0)) {
+					var textInFront = document.getElementById ("idTextInFrontOfImage"); 
+					textInFront.className = "divTextInFrontOfImage";
+					
+					var outlineImage = document.getElementById ("idOutlineImage"); 
+					outlineImage.className = "divOutlineImage";
+					outlineImage.style.backgroundImage = "url(\"" + pagetable.backgroundImage + "\")";
+					}
+				}
+			</script>
+		</head>
+	<body>
+		<div class="divFargoSocialMediaLinks"><a class="aSocialMediaLink" id="idTwitterLink" href="http://twitter.com/@chrisdadswell" target="_blank"><i class="fa fa-twitter" style="color: #4099FF; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idFacebookLink" href="http://facebook.com/" target="_blank"><i class="fa fa-facebook" style="color: #4C66A4; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idGithubLink" href="http://github.com/chrisdadswell" target="_blank"><i class="fa fa-github" style="color: black; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idLinkedInLink" href="http://www.linkedin.com/in/chrisdadswell" target="_blank"><i class="fa fa-linkedin" style="color: #069; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idRssLink" href="" target="_blank"><i class="fa fa-rss" style="color: orange; font-weight: bold;"></i></a>
+</div>
+		
+<div class="navbar navbar-static-top" id="idFargoNavbar">
+	<div class="navbar-inner">
+		<div class="navbar-container">
+			<a class="brand" href="">Articles</a>
+			<ul class="nav">
+				<li><a href="http://radio3.io/users/chrisdadswell" target="_blank">Linkblog</a></li>
+				<li><a href="http://rivers.chrisdadswell.co.uk" target="_blank">River</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Links&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://www.scripting.com">Scripting News</a></li>
+						<li><a href="http://radio3.io/">Radio3</a></li>
+						<li><a href="http://littlecardeditor.com">Little Card Editor</a></li>
+						<li class="divider"></li>
+						<li><a href="http://rss.chrisdadswell.co.uk/opml.php?op=publish&key=ivftyv53b090160e7d8">Public OPML Feed</a></li>
+						<li><a href="http://littlecardeditor.com/users/chrisdadswell/rss.xml">Little Card Editor Feed</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/contentStructuringForFargoBasedBlog.html">Content Structuring Ideas for a Fargo Based Blog</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/spendingTimeWithDocker.html">Spending time with Docker</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howToSelfPublishingFargoBlog.html">How-To: Fargo Self-Publishing</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howtofargoselfpublishingstorageoptions.html">How-To: Fargo Self-Publishing - VPS Storage</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howToSetupAFargoRiverOfNews.html">How To: Setting up a River of news</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/fargoScripts/">Fargo Scripts</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Snippets&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliCreatingLocalUsersAndRolesOnEsxi55u2.html" target="_blank"><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliCreatingLocalUsersAndRolesOnEsxi55u2.html">PowerCLI: Creating local users and roles on ESXi 5.5U2</a></a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliGettingAndSettingRoundRobinPlusIOPSESXi.html">PowerCLI: Getting and Setting Round Robin Pathing Policies on ESXi 5.5</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Options&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:turnOnImagesCommand ()" target="_blank">Turn images on</a></li>
+						<li><a href="javascript:turnOffImagesCommand ();" target="_blank">Turn images off</a></li>
+						</ul>
+					</li>
+				<li><a href="http://scriven.chrisdadswell.co.uk/about.html">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+		<div class="divFargoOutlineBody">
+			<div id="idOutlineImage">
+				<div id="idOutlineContainer" class="container">
+					<div id="idTextInFrontOfImage">
+						<div class="divHeadlineUnit" id="idHeadlineUnit">
+							<div class="divPrevNext">
+								<div class="divPrevNextLinks"><a href="contentStructuringForFargoBasedBlog.html" title="Content Structuring Ideas for a Fargo Based Blog" ><i class="fa fa-arrow-left" style="color: black"></i></a>&nbsp;&nbsp;<a href="deployingARiverAMIFromEc2.html" title="Deploying a River from an Amazon EC2 AMI" ><i class="fa fa-arrow-right" style="color: black"></i></a></div>
+								</div>
+							<div class="divBreadcrumbs" id="idBreadcrumbs">
+								<ul id="idBreadcrumbList" class="breadcrumb"><li><a href="">Home</a></li></ul>
+								</div>
+							<h2>Spending some time with Docker</h2>
+							</div>
+						<div class="divFargoMarkdown" id="idFargoMarkdown"><p><a href="http://radio3.io/?title=Spending%20some%20time%20with%20Docker&amp;link=http://scriven.chrisdadswell.co.uk/articles/spendingTimeWithDocker&amp;description=Spending%20some%20time%20with%20Docker" target="_blank">Share article with Radio3</a></p>
+
+<p><a href="https://twitter.com/share?text=Spending%20some%20time%20with%20Docker&amp;url=http://scriven.chrisdadswell.co.uk/articles/spendingTimeWithDocker" target="_blank">Tweet This Post</a></p>
+
+<p><b>Introduction</b></p>
+
+<ul>
+<li><p>I'd been meaning to have an R &amp; D session with Docker for some time so decided to jump in and have a play.</p></li>
+<li><p>There is plenty of support and content on the internet to explain what <a href="https://www.docker.com/whatisdocker/">Docker is about</a> so I won't be detailing that here. I just wanted to record the experience of picking it up for the first time and seeing what was possible after a few days of tinkering.</p></li>
+</ul>
+
+<p><b>What did I set out to do?</b></p>
+
+<ul>
+<li>I tend to pick things up best when I have some outcome I am aiming for. My aim for the week was to get a dockerized <a href="https://github.com/scripting/river4/blob/master/README.md">River4</a> (using local file storage) with a web server (to serve the Rivers) up and running. I started out by just getting the River4 aggregator up and running in a Docker container. A container is like an 'image' of software that supports the running of an application. In this instance it is an image which holds the software required to support the running of NodeJS.</li>
+</ul>
+
+<p><b>Disclaimer</b></p>
+
+<ul>
+<li>My intention was to get River4 and a web server dockerized and I achieved this, but for some reason I haven't yet worked out, River4 processes feeds but I cannot see the output. I'm sure I'll work it out, but the point of the exercise was to learn about Docker and try to get applications running in Docker and interacting with each other. I'm sure there are better ways to achieve what I ended up doing, but it's all a learning experience.</li>
+</ul>
+
+<p><b>So where to start?!</b></p>
+
+<ul>
+<li><p>Well first off you need a server to run Docker on. I had a development Ubuntu VPS on which to install Docker. I just used the <a href="http://docs.docker.com/installation/ubuntulinux/">install manual</a> from the Docker site. Real easy install.</p></li>
+<li><p>Next up, an Docker image that supports NodeJS. This is where the <a href="https://registry.hub.docker.com/">Docker hub registry</a> comes in. Its a place where you can search and download Docker images for specific use cases. I decided to use the <a href="https://registry.hub.docker.com/u/google/nodejs/">Google NodeJS image</a>.</p></li>
+<li><p>So once Docker is <a href="http://docs.docker.com/installation/ubuntulinux/">installed</a> you can pull down your first image from the hub.</p></li>
+</ul>
+
+<p><b>Pulling images</b></p>
+
+<ul>
+<li><p>To pull an image is simples - <code>docker pull google/nodejs:latest</code></p></li>
+<li><p>I use the '<i>:latest</i>' to pull only the most recent version. If you don't use '<i>:latest</i>' it will pull all versions of this image down. The google/nodejs image is about 350mb so you don't want too many versions of that floating about! Although you can easily delete images. More on that later. </p></li>
+<li><p>To search for available images at the command line - <code>docker search nodejs</code></p></li>
+<li><p>Once you start to pull an image it will take a little time to download everything required.</p></li>
+</ul>
+
+<p><b>Viewing images</b></p>
+
+<ul>
+<li><p>To see what images you have available - <code>docker images</code></p></li>
+<li><p>This will list all the images you currently have stored and their ID/versions and tags. Tags are really useful ways of storing an image at a memorable point/version.</p></li>
+</ul>
+
+<p><b>Removing images</b></p>
+
+<ul>
+<li><p>To delete an image, first off you need to list them to get back the container ID - <code>docker images</code></p></li>
+<li><p>Then - <code>docker rmi <ID></code></p></li>
+<li><p>It's worth noting you only need enter the first three numbers of the ID. If an image is currently running (more on this later) you <b>cannot</b> delete the image. It will warn you that the image is in use.</p></li>
+</ul>
+
+<p><b>Creating a River4 Docker container</b></p>
+
+<ul>
+<li><p>A Docker <a href="https://docs.docker.com/terms/container/">container</a> is everything in the image plus the unique ID, networking configuration and resource limits. Containers can be running or exited.</p></li>
+<li><p>River4 is a NodeJS RSS aggregator that is able to utilize either Amazon S3 or local file storage as its means to store files. I will be using River4 with local fs (fspath) option.</p></li>
+<li><p>Running a River4 is a very easy task;</p>
+
+<ul><li><ol><li>An OS that supports NodeJS is required</li></ol></li>
+<li><ol><li>Git clone https://github.com/scripting/river4.git</li></ol></li>
+<li><ol><li>Export a variable - fspath=/rivers/ &lt;- This points to the area on disk that holds the River4 static data</li></ol></li>
+<li><ol><li>Run the River4 - node /river4/river4.js</li></ol></li></ul></li>
+<li><p>Now we need to replicate this setup within a Docker image.</p></li>
+<li><p>Docker allows for automated builds by way of the 'Dockerfile'. Contents within Dockerfile allow for automated image builds.</p></li>
+<li><p>Dockerfiles are then built step by step using the <code>docker build</code> command.</p></li>
+<li><p>The syntax used within this file is pretty straight forward and well <a href="https://docs.docker.com/reference/builder/">documented</a>. To start playing around with this I created a directory called /riverdocker and created the Dockerfile.</p></li>
+<li></li>
+<li><p>River4fs Dockerfile</p>
+
+<ul><li># Dockerized version of River4 using local filesystem</li>
+<li># DOCKER-VERSION 1.2.0</li>
+<li><p>FROM    google/nodejs:latest</p></li>
+<li><p>MAINTAINER      Christian Dadswell "chrisdadswell@gmail.com"</p></li>
+<li><p>RUN     git clone https://github.com/scripting/river4.git; cd river4; npm install; mkdir -p rivers/lists</p></li>
+<li><p>ADD     https://dl.dropbox.com/s/0nglcm35uhpxpqx/rivers.opml /rivers/lists/</p></li>
+<li><p>EXPOSE  1337</p></li>
+<li><p>WORKDIR /rivers</p></li>
+<li><p>ENTRYPOINT ["node", "/river4/river4.js"]</p></li></ul></li>
+<li></li>
+<li><p>The hashed out lines are just comments</p></li>
+<li><p><code><a href="https://docs.docker.com/reference/builder/#from">FROM</a> google/nodejs:latest</code> line denotes which image we will be using for the container</p></li>
+<li><p>The <code><a href="https://docs.docker.com/reference/builder/#maintainer">MAINTAINER</a></code> line is pretty self explanatory, but ensures that if the image is pushed (<code>docker push</code>) to the Docker Repo Hub people using the image will know who to contact with issues.</p></li>
+<li><p>The <code><a href="https://docs.docker.com/reference/builder/#run">RUN</a>     git clone https://github.com/scripting/river4.git; cd river4; npm install; mkdir -p rivers/lists</code> line clones the river4 code into /river4, changes directory to it and installs uses npm to install the required modules and finally creates a lists folder in the /rivers directory to later store opml files that are read by the River4 aggregator.</p></li>
+<li><p>The <code><a href="https://docs.docker.com/reference/builder/#add">ADD</a>     https://dl.dropbox.com/s/0nglcm35uhpxpqx/rivers.opml /rivers/lists/</code> line downloads an opml file from Dropbox. This file contains all my RSS subscriptions.</p></li>
+<li><p>The <code><a href="https://docs.docker.com/reference/builder/#expose">EXPOSE</a> 1337</code> line tells the container to listen on the specified port at runtime. River4 dashboard requires this port.</p></li>
+<li><p>The <code><a href="https://docs.docker.com/reference/builder/#workdir">WORKDIR</a> /rivers</code> line sets the working directory for RUN, COMMAND and ENTRYPOINT instructions</p></li>
+<li><p>The <code><a href="https://docs.docker.com/reference/builder/#entrypoint">ENTRYPOINT</a> ["node", "/river4/river4.js"]</code> line  configures the container to run as an executable.  </p></li>
+</ul>
+
+<p><b>Building images</b></p>
+
+<ul>
+<li><p>So with the Dockerfile complete it's time to build the image.  Here is the command that is run from the directory containing the Dockerfile;</p></li>
+<li><p><code>docker build --rm=true -t chrisdadswell/river4fs .</code> </p></li>
+<li><p><code>docker build</code>  is the main command, <code>--rm=true</code> deletes any intermediate containers, <code>-t chrisdadswell/river4fs .</code> the <code>-t</code> tells the builder to create a repository name of <code>chrisdadswell/river4fs</code> and the final <code>.</code> tells the build where to read the Dockerfile from.</p></li>
+<li><p>The image is built from this command and will take a few moments. Once finished can be seen by entering <code>docker images</code></p></li>
+</ul>
+
+<p><b>Executing commands in a container</b></p>
+
+<ul>
+<li><p>Now it is time to execute the River4 aggregator.</p></li>
+<li><p><code>docker run -d -p 1337:1337 -e fspath=/rivers/ -t -i chrisdadswell/river4fs</code> </p></li>
+<li><p><code>docker run</code> is the main command, <code>-d</code> daemonizes the process, <code>-p 1337:1337</code> publishes the containers port to the host, the <code>-e fspath=/rivers/</code> sets the environment variable <code>-t -i chrisdadswell/river4fs</code> allocates a terminal and makes the container interactive.</p></li>
+<li><p>Executing this command generates a long container ID.</p></li>
+</ul>
+
+<p><b>Viewing the results</b></p>
+
+<ul>
+<li><p>River4 will now be running as a Docker process. To see the process enter <code>docker ps</code></p></li>
+<li><p>The output looks like this;</p></li>
+<li><p><code>a203e2e8cd00        chrisdadswell/river4fs:latest    "node /river4/river4   4 seconds ago       Up 3 seconds        0.0.0.0:1337->1337/tcp   mad_kirch</code> </p></li>
+<li><p>Not much to look at in and of itself, but we need the container ID in order to see what is going on inside the container.</p></li>
+<li><p>To take a look at what is actually happening we can use the following command, <code>docker logs -f containerID</code>. Remember you only need the first three numbers.</p></li>
+<li><p>The output will look similar to this;</p>
+
+<ul><li><p><pre></p></li>
+<li><p>River4 v0.96 running on port 1337.</p></li>
+<li><p>Running from the filesystem: /rivers/</p></li>
+<li><p>loadServerData: /rivers/data/prefsAndStats.json</p></li>
+<li><p>loadServerData: error == ENOENT, open '/rivers/data/prefsAndStats.json'</p></li>
+<li><p>loadTodaysRiver: /rivers/data/calendar/2014/10/04.json</p></li>
+<li><p>readOneList: listname == rivers.opml, filepath == /rivers/lists/rivers.opml</p></li>
+<li><p>copyIndexFile: /rivers/index.html</p></li>
+<li><p>readFeed: urlfeed == http://test.chrisdadswell.co.uk/rss.xml</p></li>
+<li><p>everyMinute: 21:03:03, 0 items on the task queue, 0 sockets open, 1 feeds in the struct.</p></li>
+<li><p>saveFeedsArray: /rivers/data/feedsStats.json</p></li>
+<li><p>readOneList: listname == rivers.opml, filepath == /rivers/lists/rivers.opml</p></li>
+<li><p></pre></p></li></ul></li>
+<li><p>The River4 application is running in a Docker container and processing feeds.</p></li>
+<li><p>To further <a href="http://docs.docker.com/reference/commandline/cli/#inspect">inspect</a> the container we can use <code>docker inspect containerID</code>. This returns a lot of information about the container. This is useful for troubleshooting settings and for seeing what a container logically looks like.</p></li>
+<li><p>The final stage of this is to look at the River4 dashboard.  Head to http://rivers.yourdomain.co.uk:1337/dashboard to see the result.</p></li>
+<li><p>So next up I needed a web server to serve up the river content. This brings up an interesting scenario where you need the web server container to serve content from the River4 container.</p></li>
+</ul>
+
+<p><b>Creating a basic web server container</b></p>
+
+<ul>
+<li><p>Having used the npm http-server module before I chose to use it again and make a container.</p></li>
+<li></li>
+<li><p>River4web Dockerfile</p>
+
+<ul><li># Docker Web Server</li>
+<li># DOCKER-VERSION 1.2.0</li>
+<li><p>FROM    google/nodejs:latest</p></li>
+<li><p>MAINTAINER      Christian Dadswell "chrisdadswell@gmail.com"</p></li>
+<li><p>RUN     npm install http-server -g</p></li>
+<li><p>EXPOSE  80</p></li>
+<li><p>ENTRYPOINT ["http-server", "/rivers", "-p", "80", "-d", "false", "-a", "0.0.0.0"]</p></li></ul></li>
+<li></li>
+<li><p>Pretty self explanatory what is going on here, but the main point of interest is with the <a href="https://docs.docker.com/reference/builder/#entrypoint">ENTRYPOINT</a> line and the <code>/rivers</code>. This is telling the http-server the directory to which it is to serve content.</p></li>
+<li><p>If we were to execute this container it would have no content to serve up. That is because there is nothing in <code>/rivers</code> to serve. Even if I run both the River4 and Web containers together the web server will still not show any content. This is because both are running in isolation of each other.</p></li>
+<li><p>In any case, here is the command to execute this container - <code>docker run -d -p 80:80 -t -i chrisdadswell/river4web</code> </p></li>
+<li><p>The next step is therefore to allow the web server container to see the content of the River4 <code>/rivers</code> container.</p></li>
+</ul>
+
+<p><b>How to make the containers interact</b></p>
+
+<ul>
+<li><p>This area of configuration was the most interesting part for me. How to make two independent containers interact and 'share'  data storage. Fortunately, Docker has this sown up! But it does require a bit of thought. I'll try my best here to explain how I got this working.</p></li>
+<li><p>Remember that by default containers are totally isolated unless you link them in some way. </p></li>
+<li><p>Docker allows the creation of links between one to many containers by way of the <code>--link</code>. This is a route I investigated and tried, but it didn't fit my needs. You can read about the use of --link from the links at the end of the article. </p></li>
+<li><p>The route I chose was to use the <code>--volumes-from</code> run time flag when launching the web server container. This flag allows you to connect a container to the volume of another container by way of passing it the containerID of the River4 container. If you remember, the River4 container exposes a volume called <code>/rivers</code>. We will attach the web server container to this read write volume.</p></li>
+<li><p>To start both containers and pass the containerID to the web server is pretty straightforward and so I created a bash script to do it.</p></li>
+<li><p><!-- outlineEmbedCode -- this version gets you a reader --></p>
+
+<script src="http://fargo.io/code/concord.js" /></script>
+
+<script src="http://fargo.io/code/utils.js"></script>
+
+<p><style>
+    .divTrexEmbeddedOutlineContainer {
+        margin-bottom: 20px;
+        }
+    .divTrexEmbeddedOutlineContainer .divTrexEmbeddedOutliner {
+        min-height: 10em;
+        max-height: 30em;
+        border:1px solid gainsboro;
+        border-top-width: 0;
+        border-bottom-width: 0;
+        overflow-y: auto;
+        background-color: white;
+        padding: 6px;
+        }
+    .divTrexEmbeddedOutlineContainer .divAboveOutlineInfo {
+        min-height: 1.5em;
+        border:1px solid gainsboro;
+        background-color: whitesmoke;
+        padding: 4px;
+        font-family: "Arial";
+        font-size: .9em;
+        }
+    .divTrexEmbeddedOutlineContainer .divInfoRight {
+        float: right;
+        }
+    .divTrexEmbeddedOutlineContainer .divBelowOutlineInfo {
+        min-height: 1.5em;
+        border:1px solid gainsboro;
+        background-color: whitesmoke;
+        padding: 4px;
+        font-family: "Arial";
+        font-size: .9em;
+        }
+    .divTrexEmbeddedOutlineContainer .divAboveOutlineInfo a {
+        font-family: "Arial";
+        font-size: .9em;
+        color: #0088cc;
+        }
+    .divTrexEmbeddedOutlineContainer .divAboveOutlineInfo a:visited {
+        font-family: "Arial";
+        font-size: .9em;
+        color: #0088cc;
+        }
+    .divTrexEmbeddedOutlineContainer .divBelowOutlineInfo a {
+        font-family: "Arial";
+        font-size: .9em;
+        color: #0088cc;
+        }
+    .divTrexEmbeddedOutlineContainer .divBelowOutlineInfo a:visited {
+        font-family: "Arial";
+        font-size: .9em;
+        color: #0088cc;
+        }
+    .divTrexEmbeddedOutlineContainer .divOutlineTitle {
+        font-weight: bold;
+        }
+    </style></p>
+
+<div class="divTrexEmbeddedOutlineContainer">
+    <div id="idAboveOutlineInfo" class="divAboveOutlineInfo">
+        <div id="idViewSource" class="divInfoRight"></div>
+
+<p><div id="idOutlineTitle" class="divInfoLeft divOutlineTitle"></div>
+        </div>
+    <div id="idTrexEmbeddedOutliner" class="divTrexEmbeddedOutliner"></div>
+    <div id="idBelowOutlineInfo" class="divBelowOutlineInfo">
+        <div class="divInfoRight">
+            <i class="fa fa-heart" style="color: red; opacity: 0.6; font-size: 0.9em;"></i> 
+            <a href="http://fargo.io/" target="_blank">Fargo</a>
+            </div>
+        <div class="divInfoLeft"></div>
+        </div>
+    </div></p>
+
+<script>
+    var font = "Arial", fontSize = 16, lineHeight = 24;
+    var opmlUrl = "https://dl.dropboxusercontent.com/s/9ousyrfiq3pydyk/d8b54c49c035403e141d4c466318df31.opml?dl=0";
+    function opKeystrokeCallback () {
+        }
+    function setPrefs () {
+        $("#idTrexEmbeddedOutliner").concord ({
+            "prefs": {
+                "outlineFont": font, 
+                "outlineFontSize": fontSize, 
+                "outlineLineHeight": lineHeight,
+                "renderMode": true,
+                "readonly": true,
+                "typeIcons": appTypeIcons
+                },
+            "callbacks": {
+                "opExpand": opExpandCallback,
+                "opKeystroke": opKeystrokeCallback
+                }
+            });
+        }
+    function getOutline (opmlUrl) {
+        var jxhr = $.ajax ({
+            url: opmlUrl,
+            dataType: "text",
+            timeout: 30000
+            })
+        .success (function (data, status, xhr) {
+            if (xhr.status==200) {
+                var title;
+                $("#idTrexEmbeddedOutliner").concord ().op.xmlToOutline (data, false);
+                title = $("#idTrexEmbeddedOutliner").concord ().op.getTitle ();
+                $("#idOutlineTitle").html (title);
+                $("#idViewSource").html ("<a href='" + opmlUrl + "'>view  source</a>");
+                }
+            })
+        .error (function (status, textStatus, errorThrown) {
+            console.log ("checkOutline: error == " + errorThrown + ", status == " + textStatus);
+            });
+        }
+    $(document).ready (function () {
+        setPrefs ();
+        getOutline (opmlUrl);
+        });
+    </script></li>
+<li><p>Note the <code>--volumes-from $river4</code>. This is the bit where the web server is being attached to the volume of the River4 container.</p></li>
+<li><p>When we run this script we can inspect the linked volume by running <code>docker inspect containerID</code></p></li>
+<li><p>First we need to get the containerID's for both containers.</p></li>
+<li><p><code>docker process</code>, then docker inspect containerID against both containerIDs.</p></li>
+<li><p>The end of the output for the river4fs and river4web containers looks like the following;</p></li>
+<li><p><!-- outlineEmbedCode -- this version gets you a reader --></p>
+
+<script src="http://fargo.io/code/concord.js" /></script>
+
+<script src="http://fargo.io/code/utils.js"></script>
+
+<p><style>
+    .divTrexEmbeddedOutlineContainer {
+        margin-bottom: 20px;
+        }
+    .divTrexEmbeddedOutlineContainer .divTrexEmbeddedOutliner {
+        min-height: 10em;
+        max-height: 30em;
+        border:1px solid gainsboro;
+        border-top-width: 0;
+        border-bottom-width: 0;
+        overflow-y: auto;
+        background-color: white;
+        padding: 6px;
+        }
+    .divTrexEmbeddedOutlineContainer .divAboveOutlineInfo {
+        min-height: 1.5em;
+        border:1px solid gainsboro;
+        background-color: whitesmoke;
+        padding: 4px;
+        font-family: "Arial";
+        font-size: .9em;
+        }
+    .divTrexEmbeddedOutlineContainer .divInfoRight {
+        float: right;
+        }
+    .divTrexEmbeddedOutlineContainer .divBelowOutlineInfo {
+        min-height: 1.5em;
+        border:1px solid gainsboro;
+        background-color: whitesmoke;
+        padding: 4px;
+        font-family: "Arial";
+        font-size: .9em;
+        }
+    .divTrexEmbeddedOutlineContainer .divAboveOutlineInfo a {
+        font-family: "Arial";
+        font-size: .9em;
+        color: #0088cc;
+        }
+    .divTrexEmbeddedOutlineContainer .divAboveOutlineInfo a:visited {
+        font-family: "Arial";
+        font-size: .9em;
+        color: #0088cc;
+        }
+    .divTrexEmbeddedOutlineContainer .divBelowOutlineInfo a {
+        font-family: "Arial";
+        font-size: .9em;
+        color: #0088cc;
+        }
+    .divTrexEmbeddedOutlineContainer .divBelowOutlineInfo a:visited {
+        font-family: "Arial";
+        font-size: .9em;
+        color: #0088cc;
+        }
+    .divTrexEmbeddedOutlineContainer .divOutlineTitle {
+        font-weight: bold;
+        }
+    </style></p>
+
+<div class="divTrexEmbeddedOutlineContainer">
+    <div id="idAboveOutlineInfo" class="divAboveOutlineInfo">
+        <div id="idViewSource" class="divInfoRight"></div>
+
+<p><div id="idOutlineTitle" class="divInfoLeft divOutlineTitle"></div>
+        </div>
+    <div id="idTrexEmbeddedOutliner" class="divTrexEmbeddedOutliner"></div>
+    <div id="idBelowOutlineInfo" class="divBelowOutlineInfo">
+        <div class="divInfoRight">
+            <i class="fa fa-heart" style="color: red; opacity: 0.6; font-size: 0.9em;"></i> 
+            <a href="http://fargo.io/" target="_blank">Fargo</a>
+            </div>
+        <div class="divInfoLeft"></div>
+        </div>
+    </div></p>
+
+<script>
+    var font = "Arial", fontSize = 16, lineHeight = 24;
+    var opmlUrl = "https://dl.dropboxusercontent.com/s/457jat079k2wl52/146995ba8d67a58fef08a7f061c73384.opml?dl=0";
+    function opKeystrokeCallback () {
+        }
+    function setPrefs () {
+        $("#idTrexEmbeddedOutliner").concord ({
+            "prefs": {
+                "outlineFont": font, 
+                "outlineFontSize": fontSize, 
+                "outlineLineHeight": lineHeight,
+                "renderMode": true,
+                "readonly": true,
+                "typeIcons": appTypeIcons
+                },
+            "callbacks": {
+                "opExpand": opExpandCallback,
+                "opKeystroke": opKeystrokeCallback
+                }
+            });
+        }
+    function getOutline (opmlUrl) {
+        var jxhr = $.ajax ({
+            url: opmlUrl,
+            dataType: "text",
+            timeout: 30000
+            })
+        .success (function (data, status, xhr) {
+            if (xhr.status==200) {
+                var title;
+                $("#idTrexEmbeddedOutliner").concord ().op.xmlToOutline (data, false);
+                title = $("#idTrexEmbeddedOutliner").concord ().op.getTitle ();
+                $("#idOutlineTitle").html (title);
+                $("#idViewSource").html ("<a href='" + opmlUrl + "'>view  source</a>");
+                }
+            })
+        .error (function (status, textStatus, errorThrown) {
+            console.log ("checkOutline: error == " + errorThrown + ", status == " + textStatus);
+            });
+        }
+    $(document).ready (function () {
+        setPrefs ();
+        getOutline (opmlUrl);
+        });
+    </script></li>
+<li><p>Note that both containers are using the same /rivers path on the <a href="https://docs.docker.com/terms/layer/">aufs</a>. You can <code>ls -l</code> this path to see the contents.</p>
+
+<ul><li><p><pre></p></li>
+<li><p>total 36</p></li>
+<li><p>drwxr-xr-x 4 root root  4096 Oct  8 15:47 data</p></li>
+<li><p>-rw-r--r-- 1 root root 23956 Oct  8 15:42 index.html</p></li>
+<li><p>drwxr-xr-x 2 root root  4096 Oct  5 17:02 lists</p></li>
+<li><p>drwxr-xr-x 2 root root  4096 Oct  8 15:47 rivers</p></li>
+<li><p></pre></p></li></ul></li>
+<li><p>As you can see content is being generated by river4fs container and is available to the river4web container.</p></li>
+</ul>
+
+<p><b>View the results</b></p>
+
+<ul>
+<li><p>So now its time to view the results of the work carried out. In my setup I have an 'A' record which points to the fixed IP address of my Ubuntu VPS. e.g., rivers.chrisdadswell.co.uk IN A 123.123.123.123.</p></li>
+<li><p>To view the River4 dashboard go to - http://<your_river_domain>:1337/dashboard</p></li>
+<li><p>To view the River4 output go to - http://<your_river_domain></p></li>
+</ul>
+
+<p>My next steps are to get River4 working 100% and possibly as one image. I'll then create a Docker repo hub on another VPS to store my images. This is because Docker Hub Registry only allows 1 private repository.</p>
+
+<p><b>Useful Docker aliases - Saves on the typing!</b></p>
+
+<ul>
+<li><p>Here are some aliases I've setup in my ~/.profile</p></li>
+<li><p>alias dim='docker images'</p></li>
+<li><p>alias dps='docker ps'</p></li>
+<li><p>alias rmc='docker rm $(sudo docker ps -a -q)'</p></li>
+<li><p>alias dlogs='docker logs -f $i'</p></li>
+<li><p>alias dins='docker inspect $i'</p></li>
+</ul>
+
+<p><b>Useful Docker links</b></p>
+
+<ul>
+<li><p><a href="https://docs.docker.com/reference/builder/">https://docs.docker.com/reference/builder/</a></p></li>
+<li><p><a href="https://docs.docker.com/userguide/dockerhub/">https://docs.docker.com/userguide/dockerhub/</a></p></li>
+<li><p><a href="http://docs.docker.com/userguide/dockervolumes/">http://docs.docker.com/userguide/dockervolumes/</a></p></li>
+<li><p><a href="http://docs.docker.com/installation/ubuntulinux/">http://docs.docker.com/installation/ubuntulinux/</a></p></li>
+<li><p><a href="https://registry.hub.docker.com/u/google/nodejs/">https://registry.hub.docker.com/u/google/nodejs/</a></p></li>
+<li><p><a href="https://docs.docker.com/userguide/dockerlinks/">https://docs.docker.com/userguide/dockerlinks/</a></p></li>
+<li><p><a href="https://crosbymichael.com/advanced-docker-volumes.html">https://crosbymichael.com/advanced-docker-volumes.html</a></p></li>
+<li><p><a href="http://www.offermann.us/2013/12/tiny-docker-pieces-loosely-joined.html">http://www.offermann.us/2013/12/tiny-docker-pieces-loosely-joined.html</a></p></li>
+<li><p><a href="http://www.dockerbook.com/">http://www.dockerbook.com/</a></p></li>
+</ul></div>
+						<div class="divFooterText">
+							<hr>
+							<p style="float: right;">Last built: Thu, Oct 23, 2014 at  3:50 PM</p>
+							<script>var disqus_identifier = "Wed, 01 Oct 2014 14:34:08 GMT";</script><a onclick="showHideComments ()"><span id="idShowHideComments" style="cursor: pointer;"></span></a><div class="divDisqusComments" id="idDisqusComments" style="visibility: visible;" ><div id="disqus_thread"></div></div><script type="text/javascript" src="http://disqus.com/forums/smallpict/embed.js"></script></div>
+							<div class="divByline" id="idByline">By <a href="scriven.chrisdadswell.co.uk/about.html" target="_blank">Chris Dadswell</a>, <span id="idWhenCreated">Wednesday, October  1, 2014 at 12:34 PM</span>.  <span class="spSlogan" style="float: right;"><i>And you may ask yourself-Well...How did I get here?</i></span></div>
+							</div>
+						</div>
+						</div>
+				</div>
+			</div>
+		<script>
+			startupFargoPlatform ();
+			startupOutlineTemplate ();
+			</script>
+		</body>
+	</html>

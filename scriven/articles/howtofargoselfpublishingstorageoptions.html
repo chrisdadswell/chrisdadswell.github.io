@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>How-To: Fargo Self-Hosted Publishing - Hosting Fargo blog content</title>
+		<meta charset='utf-8'> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<script>var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-48616896-1']); _gaq.push(['_setDomainName', 'chrisdadswell.co.uk']); _gaq.push(['_trackPageview']); (function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
+		<!-- useBootstrap -->
+	<link href="http://static.smallpicture.com/bootswatch/readable/bootstrap.min.css" rel="stylesheet" />
+	<script src="http://static.smallpicture.com/bootstrap/js/jquery-1.9.1.min.js"></script>
+	<script src="http://static.smallpicture.com/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://static.smallpicture.com/concord-assets/fontawesome/4.1.0/css/font-awesome.min.css">
+		<!-- useSmallPictStyles -->
+	<link href="http://fargo.io/cms/platform.css?v=0.48" rel="stylesheet">
+	<script src="http://fargo.io/cms/platform.js?v=0.48"></script>
+	<script>
+		var pagetable = {
+    "opmlUrl": "",
+    "opmlTitle": "Articles",
+    "opmlOwnerName": "Chris Dadswell",
+    "opmlOwnerEmail": "chrisdadswell@gmail.com",
+    "opmlDateModified": "Thu, 23 Oct 2014 17:50:34 GMT",
+    "opmlExpansionState": "",
+    "opmlLastCursor": "10",
+    "opmlOwnerProfile": "scriven.chrisdadswell.co.uk/about.html",
+    "opmlLinkPublicUrl": "https://dl.dropbox.com/s/ikd20gpzlebbu6i/articles.opml?dl=0",
+    "opmlLink": "",
+    "opmlDescription": "",
+    "opmlDateCreated": "",
+    "opmlLongTitle": "",
+    "opmlOwnerId": "",
+    "opmlFeed": "",
+    "menuname": "default",
+    "googleAnalyticsID": "UA-48616896-1",
+    "domain": "chrisdadswell.co.uk",
+    "bootstrapTheme": "readable",
+    "type": "outline",
+    "slogan": "Reallll soooon now...",
+    "disqusGroupName": "smallpict",
+    "siteTimeZone": "-2",
+    "dateFormat": "%A, %B %e, %Y at %l:%M %p",
+    "flIndexPage": false,
+    "flDisqusComments": "true",
+    "flStoryTextOnIndexPage": false,
+    "flNonDocHeadsOnIndexPage": true,
+    "flStoryDateOnIndexPage": false,
+    "storyDateFormat": "%D; %r",
+    "maxStoriesOnIndexPage": 25,
+    "maxStoryList": 25,
+    "authorTwitterAccount": "@chrisdadswell",
+    "authorFacebookAccount": "",
+    "authorProfileUrl": "scriven.chrisdadswell.co.uk/about.html",
+    "titleColor": "white",
+    "siteFolder": "blogs/scriven/articles/",
+    "flProfile": false,
+    "ctLevelsOnIndexPage": 1,
+    "blogHomeItemCount": 25,
+    "flPgfPermaLinks": false,
+    "flFixedMenu": "false",
+    "maxStreamDays": "14",
+    "flMarkdown": true,
+    "leftIndent": 0,
+    "text": "How-To: Fargo Self-Hosted Publishing - Hosting Fargo blog content",
+    "created": "Mon, 14 Jul 2014 15:44:41 GMT",
+    "description": "",
+    "path": "howtofargoselfpublishingstorageoptions",
+    "subheadColor": "white",
+    "flMapHeader": "false",
+    "mapLatitude": "40.774295",
+    "mapLongitude": "-73.970833",
+    "mapType": "roadmap",
+    "mapZoom": "14",
+    "flSnapEnabled": "true",
+    "flHideByline": "false",
+    "backgroundImage": "",
+    "streamHighlightColor": "yellow",
+    "streamTextFrameColor": "whitesmoke",
+    "streamVersion": "2",
+    "flEmojify": "true",
+    "authorGithubAccount": "chrisdadswell",
+    "authorLinkedInAccount": "christiandadswell",
+    "menutitle": "Articles",
+    "name": "howtofargoselfpublishingstorageoptions",
+    "cssUrl": "http://static.smallpicture.com/bootswatch/readable/bootstrap.min.css",
+    "menuTitle": "Articles",
+    "now": "Thu Oct 23 2014 18:50:35 GMT+0100 (GMT Summer Time)",
+    "copyright": "&copy; 2014 Chris Dadswell.",
+    "url": "/howtofargoselfpublishingstorageoptions.html"
+}; //12/12/13 by DW
+		</script>
+		<style>
+			@media only screen 
+			and (min-device-width : 320px) 
+			and (max-device-width : 480px) {
+				.navbar .nav>li {
+					display: none;
+					height: 0;
+					}
+				.divFargoSocialMediaLinks {
+					display: none;
+					}
+				.container {
+					margin-top: 10px;
+					width: 90%;
+					}
+				.divFargoMarkdown p {
+					font-size: 17px;
+					line-height: 140%;
+					}
+				h2 {
+					font-size: 24px;
+					line-height: 140%;
+					}
+				.divHeadlineUnit {
+					margin-bottom: 5px;
+					}
+				.divPrevNext {
+					font-size: 1.2em;
+					}
+				.divBreadcrumbs {
+					display: none;
+					font-size: 15px;
+					}
+				.breadcrumb>li>.divider {
+					padding: 0;
+					padding-left: 1px;
+					}
+				.spSlogan {
+					display: none;
+					}
+				}
+			</style>
+		<style>
+			.divOutlineImage {
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				right: 0;
+				
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				
+				z-index: -1;
+				opacity: 1;
+				}
+			.divTextInFrontOfImage {
+				background-color: white; 
+				opacity: .90;
+				padding: 1.5em;
+				border:2px solid whitesmoke;
+				}
+			.spSlogan {
+				display: none;
+				}
+			</style>
+		<style>
+			.divOutlineNoMarkdown {
+				font-size: 20px;
+				line-height: 150%;
+				}
+			.divOutlineNoMarkdown li {
+				line-height: 150%;
+				}
+			.divOutlineNoMarkdown li {
+				}
+			.divOutlineNoMarkdown .ulOutlineList {
+				padding: 0;
+				margin: 0;
+				}
+			.divOutlineNoMarkdown .liOutline {
+				list-style-type: none;
+				margin-bottom: .5em;
+				}
+			.divOutlineNoMarkdown .divOutlineHead {
+				font-weight: bold;
+				margin-top: 13px;
+				margin-bottom: 13px;
+				}
+			.divOutlineNoMarkdown .liHasSubs ul {
+				}
+			.divOutlineNoMarkdown .liNoSubs {
+				}
+			.divOutlineNoMarkdown .spOutlineIcon {
+				margin-right: -11px;
+				}
+			.divOutlineNoMarkdown .aOutlineWedgeLink {
+				color: black;
+				}
+			.divOutlineNoMarkdown .aOutlineWedgeLink i {
+				color: black;
+				cursor: pointer;
+				position: relative;
+				width: .5em;
+				left: -1em;
+				}
+			.divOutlineNoMarkdown .aOutlineTextLink {
+				cursor: pointer;
+				color: black;
+				text-decoration: none;
+				}
+			.divOutlineNoMarkdown .spPermalink {
+				}
+			.divOutlineNoMarkdown .spPermalink a {
+				text-decoration: none;
+				color: purple;
+				font-size: 10px;
+				font-weight: normal;
+				vertical-align: top;
+				margin-left: 3px;
+				}
+			.divOutlineNoMarkdown code {
+				display: inline;
+				border: none;
+				color: black;
+				font-size: .85em;
+				}
+			</style>
+		<!-- customStylesScripts -->
+		<style>
+.navbar .brand {
+	font-family: 'Rancho' !important;
+	font-size: 36px !important;
+	font-weight: normal !important;
+	}
+
+
+.divStreamDayText {
+	font-family: 'Ubuntu';
+	font-size: 20px;
+	}
+.divStreamDayHead {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	margin-top: .1em;
+	margin-bottom: .60em;
+	-webkit-margin-after: .60em;
+	}
+.navbar {
+	font-family: 'Ubuntu';
+	font-size: 17px;
+	}
+.body {
+	font-family: 'Ubuntu';
+	}
+
+
+.divFargoSocialMediaLinks {
+	visibility: hidden;
+}
+
+</style>
+		<script>
+			function ecOutline (idnum) { //7/12/14 by DW
+				var c = document.getElementById ("idOutlineWedge" + idnum), idUL = "#idOutlineLevel" + idnum;
+				if (c.className == "fa fa-caret-down") {
+					c.className = "fa fa-caret-right";
+					c.style.color = "black";
+					$(idUL).slideUp (75);
+					}
+				else {
+					c.className = "fa fa-caret-down";
+					c.style.color = "silver";
+					$(idUL).slideDown (75);
+					}
+				}
+			function startupOutlineTemplate () {
+				if ((pagetable.backgroundImage != undefined) && (pagetable.backgroundImage.length > 0)) {
+					var textInFront = document.getElementById ("idTextInFrontOfImage"); 
+					textInFront.className = "divTextInFrontOfImage";
+					
+					var outlineImage = document.getElementById ("idOutlineImage"); 
+					outlineImage.className = "divOutlineImage";
+					outlineImage.style.backgroundImage = "url(\"" + pagetable.backgroundImage + "\")";
+					}
+				}
+			</script>
+		</head>
+	<body>
+		<div class="divFargoSocialMediaLinks"><a class="aSocialMediaLink" id="idTwitterLink" href="http://twitter.com/@chrisdadswell" target="_blank"><i class="fa fa-twitter" style="color: #4099FF; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idFacebookLink" href="http://facebook.com/" target="_blank"><i class="fa fa-facebook" style="color: #4C66A4; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idGithubLink" href="http://github.com/chrisdadswell" target="_blank"><i class="fa fa-github" style="color: black; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idLinkedInLink" href="http://www.linkedin.com/in/chrisdadswell" target="_blank"><i class="fa fa-linkedin" style="color: #069; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idRssLink" href="" target="_blank"><i class="fa fa-rss" style="color: orange; font-weight: bold;"></i></a>
+</div>
+		
+<div class="navbar navbar-static-top" id="idFargoNavbar">
+	<div class="navbar-inner">
+		<div class="navbar-container">
+			<a class="brand" href="">Articles</a>
+			<ul class="nav">
+				<li><a href="http://radio3.io/users/chrisdadswell" target="_blank">Linkblog</a></li>
+				<li><a href="http://rivers.chrisdadswell.co.uk" target="_blank">River</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Links&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://www.scripting.com">Scripting News</a></li>
+						<li><a href="http://radio3.io/">Radio3</a></li>
+						<li><a href="http://littlecardeditor.com">Little Card Editor</a></li>
+						<li class="divider"></li>
+						<li><a href="http://rss.chrisdadswell.co.uk/opml.php?op=publish&key=ivftyv53b090160e7d8">Public OPML Feed</a></li>
+						<li><a href="http://littlecardeditor.com/users/chrisdadswell/rss.xml">Little Card Editor Feed</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/contentStructuringForFargoBasedBlog.html">Content Structuring Ideas for a Fargo Based Blog</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/spendingTimeWithDocker.html">Spending time with Docker</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howToSelfPublishingFargoBlog.html">How-To: Fargo Self-Publishing</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howtofargoselfpublishingstorageoptions.html">How-To: Fargo Self-Publishing - VPS Storage</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howToSetupAFargoRiverOfNews.html">How To: Setting up a River of news</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/fargoScripts/">Fargo Scripts</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Snippets&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliCreatingLocalUsersAndRolesOnEsxi55u2.html" target="_blank"><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliCreatingLocalUsersAndRolesOnEsxi55u2.html">PowerCLI: Creating local users and roles on ESXi 5.5U2</a></a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliGettingAndSettingRoundRobinPlusIOPSESXi.html">PowerCLI: Getting and Setting Round Robin Pathing Policies on ESXi 5.5</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Options&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:turnOnImagesCommand ()" target="_blank">Turn images on</a></li>
+						<li><a href="javascript:turnOffImagesCommand ();" target="_blank">Turn images off</a></li>
+						</ul>
+					</li>
+				<li><a href="http://scriven.chrisdadswell.co.uk/about.html">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+		<div class="divFargoOutlineBody">
+			<div id="idOutlineImage">
+				<div id="idOutlineContainer" class="container">
+					<div id="idTextInFrontOfImage">
+						<div class="divHeadlineUnit" id="idHeadlineUnit">
+							<div class="divPrevNext">
+								<div class="divPrevNextLinks"><a href="deployingARiverAMIFromEc2.html" title="Deploying a River from an Amazon EC2 AMI" ><i class="fa fa-arrow-left" style="color: black"></i></a>&nbsp;&nbsp;<a href="howToSelfPublishingFargoBlog.html" title="How-To: Fargo Self-Hosted Publishing - Hosting the fargoPublisher" ><i class="fa fa-arrow-right" style="color: black"></i></a></div>
+								</div>
+							<div class="divBreadcrumbs" id="idBreadcrumbs">
+								<ul id="idBreadcrumbList" class="breadcrumb"><li><a href="">Home</a></li></ul>
+								</div>
+							<h2>How-To: Fargo Self-Hosted Publishing - Hosting Fargo blog content</h2>
+							</div>
+						<div class="divFargoMarkdown" id="idFargoMarkdown"><p><a href="https://twitter.com/share?text=How-To%3A%20Fargo%20Self-Hosted%20Publishing%20-%20Storage%20Alternatives&amp;url=http://scriven.chrisdadswell.co.uk/articles/howto" target="_blank">Tweet This Post</a></p>
+
+<p><img style="float: right; margin-left: 25px; margin-top: 15px; margin-right: 15px; margin-bottom: 15px;" src="https://www.corephp.com/components/com_wordpress/wp/wp-content/uploads/2014/06/vps-hosting.png"></p>
+
+<p><b>Introduction</b></p>
+
+<ul>
+<li><p>Over the last weekend I was trying to work out what alternatives I had to storing this stream blog somewhere other than S3. Up until Sunday, this blog had been residing on an Amazon S3 bucket but this storage was actually starting to cost me money so I decided to find a way to store it on my existing <a href="http://en.wikipedia.org/wiki/Virtual_private_server">VPS</a> (virtual private server). In this instance the same VPS that is running my fargoPublisher. See this <a href="http://scriven.chrisdadswell.co.uk/articles/howToSelfPublishingFargoBlog.html">how-to article</a> on how to set that up.</p></li>
+<li><p>I started the journey by looking at an article that Dave wrote on <a href="http://fargo.io/docs/contentManagement/usingGithub.html">hosting your site on GitHub Pages</a>. This only took a few minutes to configure as I already had a GitHub page set-up. I played around for a bit but soon got fed up having to commit and sync all the time. There had to be a more seamless solution with minimal effort required. Don't get me wrong, this is a great way to store your pages away from a paid solution such as Amazon S3 but personally it didn't cut it for me. For those wanting to try this solution you can also <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages">setup a custom domain for your GitHub pages</a>.</p></li>
+<li><p>So call me a control freak, I wanted total control of where my site was stored.</p></li>
+<li><p>If you notice, part of the config for using GitHub Pages as storage there is that there is a directive called "<i>#siteFolder</i>". This "<i>tells Fargo where to store your files.</i>" - This was all I needed!</p></li>
+<li><p>You see, when you use this directive in your blog it essentially renders the site to the root of the "Dropbox/Apps/Fargo" folder within your Dropbox account. For example, my #siteFolder directive is <code>#siteFolder "blogs/scriven/"</code></p></li>
+<li><p>When I render my site it renders the output to /Dropbox/Apps/Fargo/blogs/scriven </p></li>
+<li><p>Fantastic, so now I can render my site locally to Dropbox. But how to get this content across to my VPS seamlessly? Read the rest of this how-to to find out! :hand-o-down:</p></li>
+</ul>
+
+<p><b>TLDR Overview</b></p>
+
+<ul>
+<li><p>Setup the Fargo blog to render content to your Dropbox account</p></li>
+<li><p>Synchronise the site from Dropbox to your VPS using <a href="http://www.dropboxwiki.com/tips-and-tricks/install-dropbox-in-an-entirely-text-based-linux-environment">dropboxd</a></p></li>
+<li><p>Configure Apache to make the site(s) available</p></li>
+<li><p>Create a cronjob on the VPS to sync the contents of the Dropbox site content to your Apache content folders </p></li>
+<li><p>Update your DNS records</p></li>
+<li><p>Enjoy your totally self published Fargo blog</p></li>
+</ul>
+
+<p><b>Configuring your site to render to Dropbox</b></p>
+
+<ul>
+<li><p>This step is very straight-forward.</p></li>
+<li><p>Open your outline into Fargo</p></li>
+<li><p>At the bottom of the outline add; Of course you can call your blog what you would like. I'm calling this example, battyblog</p>
+
+<ul><li><code>#siteFolder "blogs/battyblog"</code></li></ul></li>
+<li><p>NOTE: The reason I added "blogs/" is because I have more than one blog that I publish out of Fargo.</p>
+
+<ul><li><p>blogs/scriven - stream blog</p></li>
+<li><p>blogs/copula - link blog</p></li></ul></li>
+<li><p>With this folder structure you can have any number of blogs under the "blogs" subdirectory. Of course you can choose any folder you wish. This made made the most sense for my requirements.</p></li>
+<li><p>Once you have some content to render go to the "File" menu and select "Render All Pages"</p></li>
+<li><p>In a few seconds the publisher will create the necessary file structure and the content beneath it. You can check this by going to your Dropbox account and looking under;</p>
+
+<ul><li>Apps/Fargo/blogs/<outline name></li></ul></li>
+<li><p>As if by magic, under blogs you will see your outline name. Within that will be the content of your blog.</p></li>
+<li><p>The next step is to synchronize your blog content with the VPS, but this requires that the VPS has the Dropbox sync daemon installed and configured. We will tackle this in the next section.</p></li>
+</ul>
+
+<p><b>Installing and configuring VPS prerequisites</b></p>
+
+<ul>
+<li><p>This section is a little more involved, but I will lead you through as coherently as I can.</p></li>
+<li><p>For the following set of instructions I have been using a Debian 7 VM. Other Linux flavours may vary.</p></li>
+<li><p>Whatever distro you use, you will need the following;</p>
+
+<ul><li><p>wget</p></li>
+<li><p>Python 2.x (3.x not currently supported)</p></li>
+<li><p>a web browser*</p></li></ul></li>
+<li><p>*The web browser can be the one on your machine</p></li>
+<li><p>So lets get going by connecting to the VPS via a root SSH session</p></li>
+<li><p>Once logged in run the following to get the dropboxd software pre-reqs installed. It might be that you already have Python installed on the server.</p>
+
+<ul><li><code>apt-get install wget python</code></li></ul></li>
+<li><p>Once they are installed let's create a standard user for the purpose of running dropboxd and other Dropbox cli commands later on in this guide</p></li>
+<li><p>In this example I will create a user called "<i>batty</i>"</p>
+
+<ul><li><p><code>useradd -G sudo -d /home/batty -m -s /bin/bash batty</code></p></li>
+<li><p><code>passwd batty</code></p></li>
+<li><p><code>chown -R batty:sudo /home/batty</code></p></li>
+<li><p><code>usermod -G sudo batty</code></p></li></ul></li>
+<li><p>Switch user to batty and change to the home directory</p>
+
+<ul><li><p><code>su - batty</code></p></li>
+<li><p><code>cd ~</code></p></li></ul></li>
+</ul>
+
+<p><b>Downloading, installing and using the Dropbox CLI via dropbox.py</b></p>
+
+<ul>
+<li><p>The steps carried out here enabled us to control the dropbox daemon, dropboxd. This step is useful before getting the dropbox daemon because once we download and run dropboxd it will start to download all your files! With the use of the dropbox CLI, dropbox.py, we can control dropboxd. <img title=':wink:' alt=':wink:' class='emoji' src='http://fargo.io/code/emojify/images/emoji/wink.png' align='absmiddle' /> .. You'll thank me for this step I can assure you!</p></li>
+<li><p>So lets go get the Dropbox CLI</p>
+
+<ul><li><code>wget -O ~/bin/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py"</code> </li></ul></li>
+<li><p>Modify the file to allow execution</p>
+
+<ul><li><code>chmod +x ~/dropbox.py</code> </li></ul></li>
+<li><p>View the help associated with the Dropbox CLI, this will give you an idea of what commands are possible. We will using a few of them shortly.</p>
+
+<ul><li><code>python ~/dropbox.py help</code> </li></ul></li>
+<li><p>But before that, we need to download the Dropbox daemon</p></li>
+</ul>
+
+<p><b>Downloading the Dropbox daemon, dropboxd</b></p>
+
+<ul>
+<li><p>Download the dropbox daemon, dropboxd. In this guide we will be using the 64bit version</p>
+
+<ul><li><p><code>wget -O dropbox.tar.gz "http://www.dropbox.com/download/?plat=lnx.x86_64"</code></p></li>
+<li><p><code>tar -xvzf dropbox.tar.gz</code> </p></li></ul></li>
+<li><p>This creates a hidden directory <code>~/.dropbo<img title=':stuck_out_tongue_closed_eyes:' alt=':stuck_out_tongue_closed_eyes:' class='emoji' src='http://fargo.io/code/emojify/images/emoji/stuck_out_tongue_closed_eyes.png' align='absmiddle' />ist</code> with an executable called <code>dropboxd</code></p></li>
+<li><p>We will now run dropboxd and link it with you Dropbox account</p></li>
+<li><p>To run dropboxd, type the following;</p>
+
+<ul><li><code>~/.dropbo<img title=':stuck_out_tongue_closed_eyes:' alt=':stuck_out_tongue_closed_eyes:' class='emoji' src='http://fargo.io/code/emojify/images/emoji/stuck_out_tongue_closed_eyes.png' align='absmiddle' />ist/dropboxd</code></li></ul></li>
+<li><p>You will then see the following output;</p>
+
+<ul><li><code>This client is not linked to any account... Please visit <b>https://www.dropbox.com/cli_link?host_id=<big_long_guid></b> to link this machine.</code> </li></ul></li>
+<li><p>Copy the url and paste into a browser.  After a few ticks you will see a message telling you that the computer is now linked with your Dropbox account </p></li>
+<li><p>Back at the SSH session you will see that the dropboxd has now connected with your Dropbox account.</p></li>
+<li><p>The result of this is a new directory in the root of the home directory;</p>
+
+<ul><li><code>Dropbox</code></li></ul></li>
+<li><p>The Dropbox daemon will now be downloading all of your Dropbox folders and files, so we need to stop it.</p>
+
+<ul><li><code>python dropbox.py stop</code></li></ul></li>
+<li><p>Running the following command will show the status of the Dropbox daemon at any given time</p>
+
+<ul><li><code>python dropbox.py status</code></li></ul></li>
+<li><p>It should now be stopped;</p>
+
+<ul><li><code>Dropbox daemon stopped</code></li></ul></li>
+<li><p>Because we only want to synchronise our "Dropbox/Apps/Fargo/blogs" folder, we may need to do some Dropbox folder exclusions. In the case of my personal setup I had to exclude a good number of folders. Below shows an example of how to perform an exclusion; </p>
+
+<ul><li><code>python dropbox.py exclude add Dropbox/<folder_name></code></li></ul></li>
+<li><p>To add multiple exclusions in one hit;</p>
+
+<ul><li><code>python dropbox.py exclude add Dropbox/<folder_name> Dropbox/<folder_name></code></li></ul></li>
+<li><p>If you need to list folders within your Dropbox;</p>
+
+<ul><li><code>python dropbox.py list</code></li></ul></li>
+<li><p>One last thing before you setup your exclusions, you need to start the Dropbox daemon;</p>
+
+<ul><li><code>python dropbox.py start</code></li></ul></li>
+<li><p>Now go setup your exclusions! When you're done, come back here and we'll carry on... Are you done yet? ... OK let's get on with it. </p></li>
+<li><p>OK, so now we have only the Dropbox/Apps/Fargo/blogs folder in sync with Dropbox</p></li>
+<li><p>You can have a look in the folder by typing;</p>
+
+<ul><li><code>ls ~/Dropbox/Apps/Fargo/blogs</code></li></ul></li>
+<li><p>Finally, let's make sure that dropboxd starts at every boot;</p>
+
+<ul><li><code>python dropbox.py autostart</code></li></ul></li>
+<li></li>
+<li><p>In the next section we will configure an Apache site to run the blog from.  </p></li>
+</ul>
+
+<p><b>Installing and configuring Apache to run your blog</b></p>
+
+<ul>
+<li><p>First off we need to install Apache, if you haven't already got it installed;</p>
+
+<ul><li><code>sudo apt-get install apache2</code></li></ul></li>
+<li><p>With Apache installed, we need to create a directory to store the blog content, in this example, my blog is called "battyblog"</p>
+
+<ul><li><code>sudo mkdir -p /var/www/battyblog</code></li></ul></li>
+<li><p>Alter the ownership of this folder to allow our "batty" user to create/delete files/folders</p>
+
+<ul><li><code>sudo chown -R batty:www-data /var/www/battyblog</code></li></ul></li>
+<li><p>Next we will configure the sites-available to Apache and add configuration for the battyblog site</p></li>
+<li><p>Let's go to the Apache "sites-available" directory</p>
+
+<ul><li><code>cd /etc/apache2/sites-available</code></li></ul></li>
+<li><p>Create a new file with the name being that of your blog</p>
+
+<ul><li><code>sudo nano battyblog</code></li></ul></li>
+<li><p>Copy and paste the following into the new file, obviously replacing the domain name with yours</p>
+
+<ul><li><p><code>&#060;VirtualHost *:80&#062;</code></p></li>
+<li><p><code>ServerName battyblog.domain.co.uk</code></p></li>
+<li><p><code>DocumentRoot /var/www/battyblog</code></p></li>
+<li><p><code>ErrorLog ${APACHE_LOG_DIR}/battyblog_error.log</code></p></li>
+<li><p><code>CustomLog ${APACHE_LOG_DIR}/battyblog_access.log combined</code></p></li>
+<li><p><code>&#060;/VirtualHost&#062;</code></p></li></ul></li>
+<li><p>Now we can enable the battyblog site to make it available</p>
+
+<ul><li><p><code>sudo a2ensite battyblog</code> </p></li>
+<li><p><code>sudo service apache2 restart</code></p></li></ul></li>
+<li><p>If all went to plan, the site should now be available</p></li>
+<li><p>Next stage is to put our Dropbox synchronised blog content into our Apache site, battyblog. </p></li>
+<li></li>
+<li><p><b>NOTE:</b> I haven't covered any aspects of <a href="http://httpd.apache.org/docs/current/misc/security_tips.html">Apache security</a> that can be configured. That is out of the scope of this article! But I suggest you go do some reading on the subject prior to going live. </p></li>
+</ul>
+
+<p><b>Syncing the local blog with your Apache content directory </b></p>
+
+<ul>
+<li><p>Time to take some stock and see where we are.</p></li>
+<li><p>The root of the battyblog site from a local Dropbox perspective is;</p>
+
+<ul><li><p>Dropbox blog location</p></li>
+<li><p><code>~/Dropbox/Apps/Fargo/blogs/battyblog</code></p></li></ul></li>
+<li><p>The root Web directory of the blog has been set to;</p>
+
+<ul><li><p>Apache blog location</p></li>
+<li><p><code>/var/www/battyblog</code></p></li></ul></li>
+<li><p>Next we need to setup a simple <i>one-way</i> rsync job to synchronise the content from our local Dropbox location to the root of the Apache blog location.</p>
+
+<ul><li>~/Dropbox/Apps/Fargo/blogs -> /var/www/battyblog</li></ul></li>
+<li><p>Open up the crontab</p>
+
+<ul><li><code>crontab -e</code></li></ul></li>
+<li><p>Copy and paste the following into a blank line of the crontab</p>
+
+<ul><li><p><code>* * * * * /usr/bin/rsync -avzh --delete /home/scriven/Dropbox/Apps/Fargo/blogs/ /var/www/ &#060; /dev/null 2>&amp;1</code> </p></li>
+<li><p><code>CTRL o</code></p></li>
+<li><p><code>CTRL x</code></p></li></ul></li>
+<li><p>This will run an rsync (with delete) every minute. The delete will remove files on the destination directory at every sync. The <code>&#060; /dev/null&#060;&amp;1</code> ensures that your batty mailbox doesn't get filled up with run messages! You're welcome <img title=':smiley:' alt=':smiley:' class='emoji' src='http://fargo.io/code/emojify/images/emoji/smiley.png' align='absmiddle' /> </p></li>
+<li><p>With that final step you should see the content of the blog start to appear in a few moments in the <code>/var/www/battyblog</code> directory.</p></li>
+<li><p>In the next section we will finish off by configuring the DNS for your domain so that the blog appears on the internet.</p></li>
+</ul>
+
+<p><b>Configure DNS to allow visits to the self-hosted blog</b></p>
+
+<ul>
+<li><p>Go to your DNS management and create a new 'A' record that points to the IP address of the VPS we have just been working on.</p></li>
+<li><p>For example; <code>A battyblog.mydomain.co.uk 123.123.123.123</code></p></li>
+<li><p>NOTE: This change may take minutes, possibly hours.</p></li>
+<li><p>Once the change has occurred visit the site to see the fruits of your labour</p>
+
+<ul><li>http://battyblog.mydomain.co.uk</li></ul></li>
+<li><p>Any changes you now make to your blog will be synchronised within a minute or two with your VPS.</p></li>
+<li><p>And this is where this article comes to an end, if you have any questions or comments please contact me <a href="twitter.com/chrisdadswell">@chrisdadswell</a> on Twitter.</p></li>
+</ul>
+
+<p><b>VPS provider</b></p>
+
+<ul>
+<li><a href="http://cloudatcost.com">Cloud at Cost</a> - One off payment of $35 or $1 a month</li>
+</ul>
+
+<p><b>Links used for this guide</b></p>
+
+<ul>
+<li><p><a href="http://fargo.io/docs/contentManagement/usingGithub.html">Using GitHub to host your site content</a></p></li>
+<li><p><a href="http://www.dropboxwiki.com/tips-and-tricks/install-dropbox-in-an-entirely-text-based-linux-environment">Installing Dropbox in a text based Linux environment</a></p></li>
+<li><p><a href="http://www.dropboxwiki.com/tips-and-tricks/using-the-official-dropbox-command-line-interface-cli">Using the Dropbox CLI</a></p></li>
+<li><p><a href="http://httpd.apache.org/docs/current/misc/security_tips.html">13 Tips for securing Apache</a></p></li>
+</ul>
+
+<p><b>Credits</b></p>
+
+<ul>
+<li>Dave Winer - Creator of Fargo and other such software snacks(tm) :cheesecake:</li>
+</ul></div>
+						<div class="divFooterText">
+							<hr>
+							<p style="float: right;">Last built: Thu, Oct 23, 2014 at  3:50 PM</p>
+							<script>var disqus_identifier = "Mon, 14 Jul 2014 15:44:41 GMT";</script><a onclick="showHideComments ()"><span id="idShowHideComments" style="cursor: pointer;"></span></a><div class="divDisqusComments" id="idDisqusComments" style="visibility: visible;" ><div id="disqus_thread"></div></div><script type="text/javascript" src="http://disqus.com/forums/smallpict/embed.js"></script></div>
+							<div class="divByline" id="idByline">By <a href="scriven.chrisdadswell.co.uk/about.html" target="_blank">Chris Dadswell</a>, <span id="idWhenCreated">Monday, July 14, 2014 at  1:44 PM</span>.  <span class="spSlogan" style="float: right;"><i>I can't wait till my Fro is full-grown</i></span></div>
+							</div>
+						</div>
+						</div>
+				</div>
+			</div>
+		<script>
+			startupFargoPlatform ();
+			startupOutlineTemplate ();
+			</script>
+		</body>
+	</html>

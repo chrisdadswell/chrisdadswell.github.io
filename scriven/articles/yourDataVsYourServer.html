@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Your Data vs. Your Server</title>
+		<meta charset='utf-8'> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<script>var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-48616896-1']); _gaq.push(['_setDomainName', 'chrisdadswell.co.uk']); _gaq.push(['_trackPageview']); (function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();</script>
+		<!-- useBootstrap -->
+	<link href="http://static.smallpicture.com/bootswatch/readable/bootstrap.min.css" rel="stylesheet" />
+	<script src="http://static.smallpicture.com/bootstrap/js/jquery-1.9.1.min.js"></script>
+	<script src="http://static.smallpicture.com/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://static.smallpicture.com/concord-assets/fontawesome/4.1.0/css/font-awesome.min.css">
+		<!-- useSmallPictStyles -->
+	<link href="http://fargo.io/cms/platform.css?v=0.48" rel="stylesheet">
+	<script src="http://fargo.io/cms/platform.js?v=0.48"></script>
+	<script>
+		var pagetable = {
+    "opmlUrl": "https://dl.dropbox.com/s/ikd20gpzlebbu6i/articles.opml?dl=0",
+    "opmlTitle": "Articles",
+    "opmlOwnerName": "Chris Dadswell",
+    "opmlOwnerEmail": "chrisdadswell@gmail.com",
+    "opmlDateModified": "Tue, 13 Jan 2015 21:42:25 GMT",
+    "opmlExpansionState": "",
+    "opmlLastCursor": "1",
+    "opmlOwnerProfile": "scriven.chrisdadswell.co.uk/about.html",
+    "opmlLinkPublicUrl": "https://dl.dropbox.com/s/ikd20gpzlebbu6i/articles.opml?dl=0",
+    "opmlLink": "",
+    "opmlDescription": "This is a blog belonging to the fine and upstanding gentleman known as Christian Dadswell",
+    "opmlDateCreated": "",
+    "opmlLongTitle": "",
+    "opmlOwnerId": "",
+    "opmlFeed": "",
+    "menuname": "default",
+    "googleAnalyticsID": "UA-48616896-1",
+    "domain": "chrisdadswell.co.uk",
+    "bootstrapTheme": "readable",
+    "type": "outline",
+    "slogan": "We don't need no stinkin rock stars.",
+    "disqusGroupName": "smallpict",
+    "siteTimeZone": "0",
+    "dateFormat": "%A, %B %e, %Y at %l:%M %p",
+    "flIndexPage": false,
+    "flDisqusComments": true,
+    "flStoryTextOnIndexPage": false,
+    "flNonDocHeadsOnIndexPage": true,
+    "flStoryDateOnIndexPage": false,
+    "storyDateFormat": "%D; %r",
+    "maxStoriesOnIndexPage": 25,
+    "maxStoryList": 25,
+    "authorTwitterAccount": "@chrisdadswell",
+    "authorFacebookAccount": "",
+    "authorProfileUrl": "scriven.chrisdadswell.co.uk/about.html",
+    "titleColor": "red",
+    "siteFolder": "blogs/scriven/articles/",
+    "flProfile": false,
+    "ctLevelsOnIndexPage": 1,
+    "blogHomeItemCount": 25,
+    "flPgfPermaLinks": false,
+    "flFixedMenu": "false",
+    "maxStreamDays": "7",
+    "flMarkdown": true,
+    "leftIndent": 0,
+    "text": "Your Data vs. Your Server",
+    "created": "Tue, 13 Jan 2015 19:39:50 GMT",
+    "description": "",
+    "path": "yourDataVsYourServer",
+    "subheadColor": "white",
+    "flMapHeader": "false",
+    "mapLatitude": "40.774295",
+    "mapLongitude": "-73.970833",
+    "mapType": "roadmap",
+    "mapZoom": "14",
+    "flSnapEnabled": "true",
+    "flHideByline": "false",
+    "backgroundImage": "",
+    "streamHighlightColor": "yellow",
+    "streamTextFrameColor": "whitesmoke",
+    "streamVersion": "2",
+    "flEmojify": "true",
+    "authorGithubAccount": "chrisdadswell",
+    "authorLinkedInAccount": "christiandadswell",
+    "copyright": "&copy; 2015 Mr C. Dadswell.",
+    "menutitle": "Articles",
+    "name": "yourDataVsYourServer",
+    "cssUrl": "http://static.smallpicture.com/bootswatch/readable/bootstrap.min.css",
+    "menuTitle": "Articles",
+    "now": "Tue Jan 13 2015 21:42:26 GMT+0000 (GMT)",
+    "url": "/yourDataVsYourServer.html"
+}; //12/12/13 by DW
+		</script>
+		<style>
+			@media only screen 
+			and (min-device-width : 320px) 
+			and (max-device-width : 480px) {
+				.navbar .nav>li {
+					display: none;
+					height: 0;
+					}
+				.divFargoSocialMediaLinks {
+					display: none;
+					}
+				.container {
+					margin-top: 10px;
+					width: 90%;
+					}
+				.divFargoMarkdown p {
+					font-size: 17px;
+					line-height: 140%;
+					}
+				h2 {
+					font-size: 24px;
+					line-height: 140%;
+					}
+				.divHeadlineUnit {
+					margin-bottom: 5px;
+					}
+				.divPrevNext {
+					font-size: 1.2em;
+					}
+				.divBreadcrumbs {
+					display: none;
+					font-size: 15px;
+					}
+				.breadcrumb>li>.divider {
+					padding: 0;
+					padding-left: 1px;
+					}
+				.spSlogan {
+					display: none;
+					}
+				}
+			</style>
+		<style>
+			.divOutlineImage {
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				right: 0;
+				
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				
+				z-index: -1;
+				opacity: 1;
+				}
+			.divTextInFrontOfImage {
+				background-color: white; 
+				opacity: .90;
+				padding: 1.5em;
+				border:2px solid whitesmoke;
+				}
+			.spSlogan {
+				display: none;
+				}
+			</style>
+		<style>
+			.divOutlineNoMarkdown {
+				font-size: 20px;
+				line-height: 150%;
+				}
+			.divOutlineNoMarkdown li {
+				line-height: 150%;
+				}
+			.divOutlineNoMarkdown li {
+				}
+			.divOutlineNoMarkdown .ulOutlineList {
+				padding: 0;
+				margin: 0;
+				}
+			.divOutlineNoMarkdown .liOutline {
+				list-style-type: none;
+				margin-bottom: .5em;
+				}
+			.divOutlineNoMarkdown .divOutlineHead {
+				font-weight: bold;
+				margin-top: 13px;
+				margin-bottom: 13px;
+				}
+			.divOutlineNoMarkdown .liHasSubs ul {
+				}
+			.divOutlineNoMarkdown .liNoSubs {
+				}
+			.divOutlineNoMarkdown .spOutlineIcon {
+				margin-right: -11px;
+				}
+			.divOutlineNoMarkdown .aOutlineWedgeLink {
+				color: black;
+				}
+			.divOutlineNoMarkdown .aOutlineWedgeLink i {
+				color: black;
+				cursor: pointer;
+				position: relative;
+				width: .5em;
+				left: -1em;
+				}
+			.divOutlineNoMarkdown .aOutlineTextLink {
+				cursor: pointer;
+				color: black;
+				text-decoration: none;
+				}
+			.divOutlineNoMarkdown .spPermalink {
+				}
+			.divOutlineNoMarkdown .spPermalink a {
+				text-decoration: none;
+				color: purple;
+				font-size: 10px;
+				font-weight: normal;
+				vertical-align: top;
+				margin-left: 3px;
+				}
+			.divOutlineNoMarkdown code {
+				display: inline;
+				border: none;
+				color: black;
+				font-size: .85em;
+				}
+			</style>
+		<link href="http://scriven.chrisdadswell.co.uk/css/hover-min.css" rel="stylesheet" media="all">
+
+<style>
+	</style>
+		<style>
+.navbar {
+	font-family: 'Ubuntu';
+	font-size: 17px;
+	border-bottom: cornflowerblue;
+	border-bottom-width: thin;
+	border-color: aquamarine; 
+	border-bottom-style: outset;
+	}
+.navbar .brand {
+	font-family: 'Rancho' !important;
+	font-size: 36px !important;
+	font-weight: normal !important;
+	text-shadow: 0px 0px 6px rgba(150, 150, 150, 0.5);
+	}
+.navbar .nav {
+	text-shadow: 0px 0px 6px rgba(150, 150, 150, 0.5);
+	}
+.navbar .nav>li {
+	text-shadow: 0px 0px 6px rgba(150, 150, 150, 0.5);
+	}
+.navbar .nav>li>a {
+	text-shadow: 0px 0px 6px rgba(150, 150, 150, 0.5);
+	}
+
+.navbar .nav li.dropdown.open>.dropdown-toggle {
+	background-color: lightsteelblue;
+	}
+.navbar .nav ul.dropdown-menu {
+	background-color: lightsteelblue;
+	}
+
+
+.divStreamDayText {
+	font-family: 'Ubuntu';
+	font-size: 20px;
+	}
+.divStreamDayHead {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	margin-top: .1em;
+	margin-bottom: .60em;
+	-webkit-margin-after: .60em;
+	}
+.aStreamDayLink {
+	font-family: 'Ubuntu';
+	font-weight: lighter;
+	color: rgb(50, 35, 101);
+	}
+.body {
+	font-family: 'Imprima';
+	}
+.divFargoStreamFooter {
+	height: 200px;
+	background-color: lightsteelblue;
+	}
+
+
+.divFargoSocialMediaLinks {
+	visibility: hidden;
+	}
+
+
+.fa {
+	text-shadow: 0px 0px 6px rgba(150, 150, 150, 0.5);
+	}
+.fa-border {
+	padding: .2em .25em .2em; 
+	border: solid 0.1em #E7E9F5;
+	border-radius: 0.4em; 
+	}
+
+</style>
+		<script>
+			function ecOutline (idnum) { //7/12/14 by DW
+				var c = document.getElementById ("idOutlineWedge" + idnum), idUL = "#idOutlineLevel" + idnum;
+				if (c.className == "fa fa-caret-down") {
+					c.className = "fa fa-caret-right";
+					c.style.color = "black";
+					$(idUL).slideUp (75);
+					}
+				else {
+					c.className = "fa fa-caret-down";
+					c.style.color = "silver";
+					$(idUL).slideDown (75);
+					}
+				}
+			function startupOutlineTemplate () {
+				if ((pagetable.backgroundImage != undefined) && (pagetable.backgroundImage.length > 0)) {
+					var textInFront = document.getElementById ("idTextInFrontOfImage"); 
+					textInFront.className = "divTextInFrontOfImage";
+					
+					var outlineImage = document.getElementById ("idOutlineImage"); 
+					outlineImage.className = "divOutlineImage";
+					outlineImage.style.backgroundImage = "url(\"" + pagetable.backgroundImage + "\")";
+					}
+				}
+			</script>
+		</head>
+	<body>
+		<div class="divFargoSocialMediaLinks"><a class="aSocialMediaLink" id="idTwitterLink" href="http://twitter.com/@chrisdadswell" target="_blank"><i class="fa fa-twitter" style="color: #4099FF; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idFacebookLink" href="http://facebook.com/" target="_blank"><i class="fa fa-facebook" style="color: #4C66A4; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idGithubLink" href="http://github.com/chrisdadswell" target="_blank"><i class="fa fa-github" style="color: black; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idLinkedInLink" href="http://www.linkedin.com/in/chrisdadswell" target="_blank"><i class="fa fa-linkedin" style="color: #069; font-weight: bold;"></i></a>
+<a class="aSocialMediaLink" id="idRssLink" href="" target="_blank"><i class="fa fa-rss" style="color: orange; font-weight: bold;"></i></a>
+</div>
+		
+<div class="navbar navbar-static-top" id="idFargoNavbar">
+	<div class="navbar-inner">
+		<div class="navbar-container">
+			<a class="brand" href="">Articles</a>
+			<ul class="nav">
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Links&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://www.scripting.com">Scripting News</a></li>
+						<li><a href="http://radio3.io/">Radio3</a></li>
+						<li><a href="http://littlecardeditor.com">Little Card Editor</a></li>
+						<li class="divider"></li>
+						<li><a href="http://rivers.chrisdadswell.co.uk" target="_blank"><a href="http://rivers.chrisdadswell.co.uk">River</a></a></li>
+						<li><a href="http://radio3.io/users/chrisdadswell" target="_blank"><a href="http://radio3.io/users/chrisdadswell/">Linkblog</a></a></li>
+						<li class="divider"></li>
+						<li><a href="http://rss.chrisdadswell.co.uk/opml.php?op=publish&key=ivftyv53b090160e7d8">Public OPML Feed</a></li>
+						<li><a href="http://littlecardeditor.com/users/chrisdadswell/rss.xml">Little Card Editor Feed</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Articles&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/contentStructuringForFargoBasedBlog.html">Content Structuring Ideas for a Fargo Based Blog</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/spendingTimeWithDocker.html">Spending time with Docker</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howToSelfPublishingFargoBlog.html">How-To: Fargo Self-Publishing</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howtofargoselfpublishingstorageoptions.html">How-To: Fargo Self-Publishing - VPS Storage</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/howToSetupAFargoRiverOfNews.html">How To: Setting up a River of news</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/articles/fargoScripts/">Fargo Scripts</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Code Snippets&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliCreatingLocalUsersAndRolesOnEsxi55u2.html" target="_blank"><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliCreatingLocalUsersAndRolesOnEsxi55u2.html">PowerCLI: Creating local users and roles on ESXi 5.5U2</a></a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/codeSnippets/powercliGettingAndSettingRoundRobinPlusIOPSESXi.html">PowerCLI: Getting and Setting Round Robin Pathing Policies on ESXi 5.5</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Options&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:turnOnImagesCommand ()" target="_blank">Turn images on</a></li>
+						<li><a href="javascript:turnOffImagesCommand ();" target="_blank">Turn images off</a></li>
+						</ul>
+					</li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Archive&nbsp;<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://scriven.chrisdadswell.co.uk/2014/11">November</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/2014/10">October</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/2014/09">September</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/2014/08">August</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/2014/07">July</a></li>
+						<li><a href="http://scriven.chrisdadswell.co.uk/2014/06">June</a></li>
+						</ul>
+					</li>
+				<li><a href="http://scriven.chrisdadswell.co.uk/about.html">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+		<div class="divFargoOutlineBody">
+			<div id="idOutlineImage">
+				<div id="idOutlineContainer" class="container">
+					<div id="idTextInFrontOfImage">
+						<div class="divHeadlineUnit" id="idHeadlineUnit">
+							<div class="divPrevNext">
+								<div class="divPrevNextLinks"><i class="fa fa-arrow-left" style="color: silver"></i>&nbsp;&nbsp;<a href="contentStructuringForFargoBasedBlog.html" title="Content Structuring Ideas for a Fargo Based Blog" ><i class="fa fa-arrow-right" style="color: black"></i></a></div>
+								</div>
+							<div class="divBreadcrumbs" id="idBreadcrumbs">
+								<ul id="idBreadcrumbList" class="breadcrumb"><li><a href="">Home</a></li></ul>
+								</div>
+							<h2>Your Data vs. Your Server</h2>
+							</div>
+						<div class="divFargoMarkdown" id="idFargoMarkdown"><p>After reading Jeffrey Kishner's <a href="http://thoughts.jeffreykishner.com/your-data-vs-your-server">latest post</a> it got me thinking. So rather than put a lengthy comment in his post I thought I'd write my own post in response.</p>
+
+<p>Much like Jeffrey I have used several CMS in the past starting off with Google Sites back in the day (which to my amazement is still going) then moved to Blogger for a short time before ending up on the flavour of the day, back then, WordPress.  </p>
+
+<p>I've sat on Wordpress for a good few years and for the most part it has served its purpose. My www domain for chrisdadswell.co.uk is still on Wordpress but it's days are numbered.</p>
+
+<p>I've dabbled with <a href="http://postach.io">Postach.io</a>, <a href="https://ghost.org/">Ghost</a> and Medium, but they didn't do it for me. In the case of Postach.io I really liked the way it worked, but I dropped using Evernote in favour of Octobox (files are hosted on Dropbox). You can actually self host the Octobox service if you so wish, but I found it flaky! Octobox has nowhere near the functionality of the monolithic Evernote, but it serves my purposes. </p>
+
+<p>Ghost was my first proper foray into self hosting CMS, but didn't like the fact it was all lumped into a database. </p>
+
+<p>And Medium hasn't got a self hosting option, but it looks nice so tried it out and eventually dropped it (where are the RSS feeds?)</p>
+
+<p>I came to my current CMS, <a href="http://fargo.io">Fargo.io</a> about two years ago and haven't really looked back since. This blog is authored at Fargo.io. And I self host the publisher and static pages. It suits my needs exactly. The only downside for me is the VPS provider*.</p>
+
+<p>As it stands I run several services on my VPS(s) including this blog (and fargoPublisher), <a href="http://rivers.chrisdadswell.co.uk">Rivers</a>, TTRSS and soon tweetToRSS. As for the data consumed by them, all of it is held on Dropbox.</p>
+
+<p>If the VPS(s) go down, which they do, I don't currently have a mechanism to resurrect all my services elsewhere, but I'm chipping away at that in various ways.</p>
+
+<p>In the case of my blog I have started syncing my static content to my Github Pages site. With the switch of a DNS name I should be able to get my blog back and available in no time. I wouldn't be able to publish any new content until my fargoPublisher was back but that's not earth shattering. </p>
+
+<p>Self hosting Node applications such as River, fargoPublisher, tweetToRss has a major downside when the VPS go away and currently I am at the mercy of CloudAtCost to get my servers back for me... when they feel like it. Not great, but welcome to "on the cheap" cloud computing. If I wanted SLA's and better support I know I could go elsewhere, but I'm currently comfortable accepting what they offer.</p>
+
+<p>Ultimately, I still have the data available from Dropbox that is sync'd with my home PC. I can control my *.chrisdadswell.co.uk domain using Cloudflare and push comes to shove I can just buy more cloud compute and get those services back up in a jiffy. </p>
+
+<p>In a nutshell when I see new services coming along my first question is always "how much of this thing can I self host?"</p>
+
+<p>The closer I can get to the application and data being completely self hosted the better.</p></div>
+						<div class="divFooterText">
+							<hr>
+							<p style="float: right;">Last built: Tue, Jan 13, 2015 at  9:42 PM</p>
+							<script>var disqus_identifier = "https://dl.dropbox.com/s/ikd20gpzlebbu6i/articles.opml?dl=0Tue, 13 Jan 2015 19:39:50 GMT";</script><a onclick="showHideComments ()"><span id="idShowHideComments" style="cursor: pointer;"></span></a><div class="divDisqusComments" id="idDisqusComments" style="visibility: visible;" ><div id="disqus_thread"></div></div><script type="text/javascript" src="http://disqus.com/forums/smallpict/embed.js"></script></div>
+							<div class="divByline" id="idByline">By <a href="scriven.chrisdadswell.co.uk/about.html" target="_blank">Chris Dadswell</a>, <span id="idWhenCreated">Tuesday, January 13, 2015 at  7:39 PM</span>.  <span class="spSlogan" style="float: right;"><i>And you may find yourself living in a shotgun shack</i></span></div>
+							</div>
+						</div>
+						</div>
+				</div>
+			</div>
+		<script>
+			startupFargoPlatform ();
+			startupOutlineTemplate ();
+			</script>
+		</body>
+	</html>
