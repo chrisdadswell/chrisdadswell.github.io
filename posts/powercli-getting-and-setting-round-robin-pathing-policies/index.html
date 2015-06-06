@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PowerCLI - Getting and setting round-robin pathing policies</title>
+  <meta name="description" content="The following functions can be used to retrieve (Get-RoundRobin) whether particular LUN IDs are using a Round Robin pathing policy.  You can then set (Set-Ro...">
+
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/fa.css">
+  <link rel="stylesheet" href="/assets/css/hover.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Imprima">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <script src="/assets/js/search.js" type="text/javascript"></script>
+  <script src="/assets/js/jquery.js" type="text/javascript"></script>
+  <link rel="canonical" href="http://scriven.chrisdadswell.co.uk/posts/powercli-getting-and-setting-round-robin-pathing-policies">
+  <link rel="alternate" type="application/rss+xml" title="Scriven" href="http://scriven.chrisdadswell.co.uk/feed.xml">
+  
+</head>
+
+  <body>
+    <div class="drop-site-header"></div>
+<header class="site-header">
+  
+  <div class="wrapper">
+    <div id="header-block">
+        <a class="site-title" href="/">Scriven</a>
+        <div class="header-image"><img src="http://blog.chrisdadswell.co.uk:8181/assets/images/jackdaw.png" alt="Jackdaw inverse logo" align="right" height="100px" width="100px"></div>
+    </div>
+    <div class="copyright">© Chris Dadswell 2015</div>
+    <div id="search-container">
+    <input type="text" id="search-input" placeholder=" Search... ">
+    <ul id="results-container"></ul>
+    <p></p>
+    </div>
+    
+    <h1 class="page-heading"><a href="http://scriven.chrisdadswell.co.uk">recent</a> • <a href="http://scriven.chrisdadswell.co.uk/archive">archive</a> • <a href="http://scriven.chrisdadswell.co.uk/linklog">linklog</a> • <a href="http://scriven.chrisdadswell.co.uk/feeds/">feeds</a> • <a href="http://scriven.chrisdadswell.co.uk/about">about</a></h1>
+    <hr class="hr-head">
+    <p></p>
+  </div>
+
+
+<script>
+$(document).ready(function(){
+
+	// hide #back-top first
+	$("#back-top").hide();
+	
+	// fade in #back-top
+	$(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('#back-top').fadeIn();
+			} else {
+				$('#back-top').fadeOut();
+			}
+		});
+
+		// scroll body to 0px on click
+		$('#back-top a').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 800);
+			return false;
+		});
+	});
+
+});
+</script>
+
+</header>
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">PowerCLI - Getting and setting round-robin pathing policies</h1>
+    <div class="post-meta">
+    <i class='fa fa-calendar-o'></i> <time datetime="2015-04-29">April 29, 2015 | <i class='fa fa-tags hvr-wobble-horizontal'></i> <a class="tag_list_link" href="/tag/powershell">powershell</a><a class="tag_list_link" href="/tag/powercli">powercli</a><a class="tag_list_link" href="/tag/esxi">esxi</a><a class="tag_list_link" href="/tag/vmware">vmware</a> | <a href="#disqus_thread"><i class='fa fa-comments-o'></i></a>
+    </time>
+</div>
+  </header>
+  <article class="post-content">
+    <p>The following functions can be used to retrieve (Get-RoundRobin) whether particular LUN IDs are using a Round Robin pathing policy.  You can then set (Set-RoundRobin) a round robin pathing policy on the LUN IDs if your storage processor supports it.</p>
+
+<p>Round Robin Pathing Policies from the <a href="http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&amp;cmd=displayKC&amp;externalId=1011340">VMware site</a></p>
+
+<blockquote>
+  <p>Round Robin (RR): Uses an automatic path selection rotating through all available paths, enabling the distribution of load across the configured paths.
+	For Active/Passive storage arrays, only the paths to the active controller will be used in the Round Robin policy.
+	For Active/Active storage arrays, all paths will be used in the Round Robin policy.</p>
+</blockquote>
+
+<p>To run the scripts you will need your Vendor LUN ID or Device Display Name.<br />
+A LUN ID looks a bit like this:</p>
+
+<blockquote>
+  <p>naa.123456789…..</p>
+</blockquote>
+
+<!--more-->
+
+<p>To retrieve a list of LUN IDs run the following command from an ESXi host;</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">esxcli storage nmp device list</code></pre></div>
+
+<p>Note the Device Display Name for your vendor includes a naa.xxxxxxxx ID. Record the first 12 numbers after ‘naa’ as we will use this in the scripts.</p>
+
+<p>Get-RoundRobin</p>
+
+<div class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">Function</span> <span class="nb">Get-RoundRobin</span><span class="p">()</span> <span class="p">{</span>  
+		<span class="nv">$vcenter</span><span class="p">=</span><span class="nb">Read-Host</span> <span class="s2">&quot;Enter a vCenter&quot;</span>
+		<span class="nb">Connect-vCenter</span> <span class="nv">$vcenter</span>
+		<span class="nb">Write-Host</span> <span class="s2">&quot;Connecting to $vcenter ...&quot;</span>
+		<span class="nb">Write-Host</span> <span class="s2">&quot;Getting clusters available for $vcenter&quot;</span>
+		<span class="nb">Get-Cluster</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">Name</span> <span class="p">|</span> <span class="n">ft</span> <span class="n">-HideTableHeaders</span>
+		<span class="nv">$cluster</span><span class="p">=</span><span class="nb">Read-Host</span> <span class="s2">&quot;Enter a cluster name&quot;</span>
+		<span class="nb">Write-host</span> <span class="s2">&quot;Finding &lt;VENDOR_NAME&gt; LUNs (naa.&lt;VENDOR_ID_PATTERN&gt;*) on hosts within cluster $cluster without a round robin pathing policy ... You may twiddle thumbs now.&quot;</span>
+		<span class="nb">Get-VMHost</span> <span class="n">-Location</span> <span class="nv">$cluster</span> <span class="p">|</span> <span class="nb">Get-ScsiLun</span> <span class="n">-CanonicalName</span> <span class="s2">&quot;naa.&lt;VENDOR_ID_PATTERN&gt;*&quot;</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">CanonicalName</span> <span class="p">|</span> <span class="n">where</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">MultipathPolicy</span> <span class="o">-ne</span> <span class="s2">&quot;RoundRobin&quot;</span><span class="p">}</span> <span class="p">|</span> <span class="nb">measure-object</span> <span class="n">-line</span>
+		<span class="nb">Write-Host</span> <span class="s2">&quot;Completed&quot;</span>
+	<span class="p">}</span></code></pre></div>
+
+<p>Set-RoundRobin</p>
+
+<div class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">Function</span> <span class="nb">Set-RoundRobin</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nv">$vcenter</span><span class="p">=</span><span class="nb">Read-Host</span> <span class="s2">&quot;Enter a vCenter&quot;</span>
+		<span class="nb">Connect-vCenter</span> <span class="nv">$vcenter</span>
+		<span class="nb">Write-Host</span> <span class="s2">&quot;Connecting to $vcenter ...&quot;</span>
+		<span class="nb">Write-Host</span> <span class="s2">&quot;Getting clusters available for $vcenter&quot;</span>
+		<span class="nb">Get-Cluster</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">Name</span> <span class="p">|</span> <span class="n">ft</span> <span class="n">-HideTableHeaders</span>
+		<span class="nv">$cluster</span><span class="p">=</span><span class="nb">Read-Host</span> <span class="s2">&quot;Enter a cluster name&quot;</span>
+		<span class="nb">Write-host</span> <span class="s2">&quot;Finding &lt;VENDOR_NAME&gt; LUNs (naa.&lt;VENDOR_ID_PATTERN&gt;*) on hosts within cluster $cluster without RR pathing policy and setting to round robin ... You may twiddle thumbs now.&quot;</span>
+		<span class="nb">Get-VMHost</span> <span class="n">-Location</span> <span class="nv">$cluster</span> <span class="p">|</span> <span class="nb">Get-ScsiLun</span> <span class="n">-CanonicalName</span> <span class="s2">&quot;naa.naa.&lt;VENDOR_ID_PATTERN&gt;*&lt;VENDOR_ID_PATTERN&gt;*&quot;</span> <span class="p">|</span> <span class="n">Where</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">MultipathPolicy</span> <span class="o">-ne</span> <span class="s2">&quot;RoundRobin&quot;</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Set-ScsiLun</span> <span class="n">-MultipathPolicy</span> <span class="n">RoundRobin</span>
+		<span class="nb">Write-Host</span> <span class="s2">&quot;Completed&quot;</span>
+		<span class="nb">Write-host</span> <span class="s2">&quot;Finding LUNs without RR pathing policy&quot;</span>
+		<span class="nb">Get-VMHost</span> <span class="n">-Location</span> <span class="nv">$cluster</span> <span class="p">|</span> <span class="nb">Get-ScsiLun</span> <span class="n">-CanonicalName</span> <span class="s2">&quot;naa.&lt;VENDOR_ID_PATTERN&gt;*&quot;</span> <span class="p">|</span> <span class="n">Where</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">MultipathPolicy</span> <span class="o">-ne</span> <span class="s2">&quot;RoundRobin&quot;</span><span class="p">}</span>
+		<span class="nb">Write-Host</span> <span class="s2">&quot;Completed&quot;</span>
+	<span class="p">}</span></code></pre></div>
+
+<p>Connect-vCenter</p>
+
+<div class="highlight"><pre><code class="language-powershell" data-lang="powershell"><span class="k">Function</span> <span class="nb">Connect-vCenter</span> <span class="p">{</span>
+	<span class="k">Param</span><span class="p">(</span>
+        	<span class="no">[string]</span><span class="nv">$vcenter</span>
+	<span class="p">)</span>
+        	<span class="c"># GET VSPHERE VCENTER CREDENTIALS</span>
+	        <span class="nv">$creds</span><span class="p">=</span><span class="nb">Get-Credential</span> <span class="n">-Credential</span> <span class="s2">&quot;&lt;DOMAIN_CREDENTIALS&gt;&quot;</span>
+        	<span class="nb">Connect-VIServer</span> <span class="n">-Server</span> <span class="nv">$vcenter</span> <span class="n">-Protocol</span> <span class="n">https</span> <span class="n">-Credential</span> <span class="nv">$creds</span> <span class="n">-warningaction</span> <span class="n">SilentlyContinue</span>
+	<span class="p">}</span></code></pre></div>
+
+<p>As a bonus, you can also set the IOPS to 1 on the PSP (Path Selection Policy).</p>
+
+<p>Here is a ESXi command line one liner to GET the current iops set on a Round Robin PSP</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">for</span> i in <span class="sb">`</span>ls /vmfs/devices/disks <span class="p">|</span> grep naa.&lt;VENDOR_ID_PATTERN&gt;<span class="p">|</span>grep -v :<span class="sb">`</span><span class="p">;</span><span class="k">do</span> esxcli storage nmp psp roundrobin deviceconfig get --device<span class="o">=</span><span class="nv">$i</span><span class="p">;</span> <span class="k">done</span></code></pre></div>
+
+<p>Here is an ESXi command line one liner to SET the iops to 1 from the default of 1000 (check with your vendor before doing this) on a Round Robin PSP</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">for</span> i in <span class="sb">`</span>ls /vmfs/devices/disks <span class="p">|</span> grep naa.&lt;VENDOR_ID_PATTERN&gt;<span class="sb">`</span> <span class="p">;</span> <span class="k">do</span> esxcli storage nmp psp roundrobin deviceconfig <span class="nb">set</span> --device<span class="o">=</span><span class="nv">$i</span> --iops<span class="o">=</span><span class="m">1</span> --type<span class="o">=</span>iops<span class="p">;</span> <span class="k">done</span></code></pre></div>
+
+
+  </article>
+  
+  <p id="back-top">
+	<a href="#top"><span></span></a>
+  </p>
+  
+    <div id="twitter"</div>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="chrisdadswell" data-hashtags="Scriven">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <p></p>
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'scriven-blog';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+      </div>
+    </div>
+
+    <hr class="hr-footer">
+<footer>
+        <div id="social-buttons">
+        <a href="http://twitter.com/chrisdadswell"><i class='fa fa-2x fa-twitter fa-border hvr-sink'></i></a> 
+        <a href="http://www.linkedin.com/"><i class='fa fa-2x fa-linkedin fa-border hvr-sink'></i></a>
+        <a href="https://github.com/chrisdadswell"><i class='fa fa-2x fa-github fa-border hvr-sink'></i></a>
+        <a href="/feed.xml"><i class='fa fa-2x fa-rss fa-border hvr-sink'></i></a>
+        <a href="mailto:chrisdadswell@gmail.com?Subject=Mail from the Scriven blog" target="_top"><i class='fa fa-2x fa-envelope fa-border hvr-sink'></i></a>
+    </div>
+    <div id="slogan"></div>
+</footer>
+
+    <script>
+    $(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: "http://blog.chrisdadswell.co.uk:8181/assets/files/slogans.txt",
+        dataType: "text",
+        success: function(data) {processData(data);}
+        });
+    });
+    
+    function processData(allText) {
+        var allTextLines = allText.split(/\r\n|\n/);
+        var slogans = [];
+    
+        for (var i=0; i<allTextLines.length; i++) {
+            var slogi = allTextLines[i];
+            slogans.push(slogi);
+        }
+        var word = slogans[Math.floor(Math.random() * slogans.length)];
+        document.getElementById("slogan").innerHTML= word;
+    }
+    </script>
+    <script type="text/javascript">
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: 'search.json',
+      searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+      noResultsText: 'No results found',
+      limit: 10,
+      fuzzy: false,
+    })
+
+  </body>
+</html>

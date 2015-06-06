@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Scriven</title>
+  <meta name="description" content="This is the blog of Christian Dadswell
+">
+
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/fa.css">
+  <link rel="stylesheet" href="/assets/css/hover.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Imprima">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <script src="/assets/js/search.js" type="text/javascript"></script>
+  <script src="/assets/js/jquery.js" type="text/javascript"></script>
+  <link rel="canonical" href="http://scriven.chrisdadswell.co.uk/404.html">
+  <link rel="alternate" type="application/rss+xml" title="Scriven" href="http://scriven.chrisdadswell.co.uk/feed.xml">
+  
+</head>
+
+  <body>
+    <div class="drop-site-header"></div>
+<header class="site-header">
+  
+  <div class="wrapper">
+    <div id="header-block">
+        <a class="site-title" href="/">Scriven</a>
+        <div class="header-image"><img src="http://blog.chrisdadswell.co.uk:8181/assets/images/jackdaw.png" alt="Jackdaw inverse logo" align="right" height="100px" width="100px"></div>
+    </div>
+    <div class="copyright">© Chris Dadswell 2015</div>
+    <div id="search-container">
+    <input type="text" id="search-input" placeholder=" Search... ">
+    <ul id="results-container"></ul>
+    <p></p>
+    </div>
+    
+    <h1 class="page-heading"><a href="http://scriven.chrisdadswell.co.uk">recent</a> • <a href="http://scriven.chrisdadswell.co.uk/archive">archive</a> • <a href="http://scriven.chrisdadswell.co.uk/linklog">linklog</a> • <a href="http://scriven.chrisdadswell.co.uk/feeds/">feeds</a> • <a href="http://scriven.chrisdadswell.co.uk/about">about</a></h1>
+    <hr class="hr-head">
+    <p></p>
+  </div>
+
+
+<script>
+$(document).ready(function(){
+
+	// hide #back-top first
+	$("#back-top").hide();
+	
+	// fade in #back-top
+	$(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('#back-top').fadeIn();
+			} else {
+				$('#back-top').fadeOut();
+			}
+		});
+
+		// scroll body to 0px on click
+		$('#back-top a').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 800);
+			return false;
+		});
+	});
+
+});
+</script>
+
+</header>
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title"></h1>
+  </header>
+
+  <article class="post-content">
+    <div class="home">
+<div class="linkblog-title">Hmm. This is awkward.. I'd head back to <a href="http://scriven.chrisdadswell.co.uk"><i class="fa fa-home fa-fw"></i></a> and try again.</div>
+<p></p>
+<div class="logo-404"><img src="/assets/images/nothingtoseehere.gif" align="center" width="400" height="299" /></div>
+<p></p>
+</div>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <hr class="hr-footer">
+<footer>
+        <div id="social-buttons">
+        <a href="http://twitter.com/chrisdadswell"><i class='fa fa-2x fa-twitter fa-border hvr-sink'></i></a> 
+        <a href="http://www.linkedin.com/"><i class='fa fa-2x fa-linkedin fa-border hvr-sink'></i></a>
+        <a href="https://github.com/chrisdadswell"><i class='fa fa-2x fa-github fa-border hvr-sink'></i></a>
+        <a href="/feed.xml"><i class='fa fa-2x fa-rss fa-border hvr-sink'></i></a>
+        <a href="mailto:chrisdadswell@gmail.com?Subject=Mail from the Scriven blog" target="_top"><i class='fa fa-2x fa-envelope fa-border hvr-sink'></i></a>
+    </div>
+    <div id="slogan"></div>
+</footer>
+
+    <script>
+    $(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: "http://blog.chrisdadswell.co.uk:8181/assets/files/slogans.txt",
+        dataType: "text",
+        success: function(data) {processData(data);}
+        });
+    });
+    
+    function processData(allText) {
+        var allTextLines = allText.split(/\r\n|\n/);
+        var slogans = [];
+    
+        for (var i=0; i<allTextLines.length; i++) {
+            var slogi = allTextLines[i];
+            slogans.push(slogi);
+        }
+        var word = slogans[Math.floor(Math.random() * slogans.length)];
+        document.getElementById("slogan").innerHTML= word;
+    }
+    </script>
+    <script type="text/javascript">
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: 'search.json',
+      searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+      noResultsText: 'No results found',
+      limit: 10,
+      fuzzy: false,
+    })
+
+  </body>
+</html>

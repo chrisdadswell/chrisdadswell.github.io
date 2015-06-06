@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="/rss.xsl" media="screen"?>
+<rss version="2.0" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
+   <channel>
+      <language>en</language>
+      <creativeCommons:license>http://creativecommons.org/licenses/by-nc-sa/2.0/uk/</creativeCommons:license>
+            <pubDate>Fri, 5 Jun 2015 08:06:14 +0000</pubDate>
+      <lastBuildDate>Fri, 5 Jun 2015 08:06:14 +0000</lastBuildDate>
+            <ttl>5</ttl>
+      <docs>http://www.audioscrobbler.net/data/webservices</docs>      <title>ceetronic's Recently Played Tracks</title>
+      <link>http://www.last.fm/user/ceetronic</link>
+      <description>Last 10 tracks submitted to Last.fm</description>
+      <item>
+         <title>Prefuse 73 – Inside</title>
+         <link>http://www.last.fm/music/Prefuse+73/_/Inside</link>
+         <pubDate>Fri, 5 Jun 2015 08:06:14 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433491574</guid>
+                 <description>http://www.last.fm/music/Prefuse+73</description>
+      </item>
+      <item>
+         <title>Prefuse 73 – Applauded Assumptions</title>
+         <link>http://www.last.fm/music/Prefuse+73/_/Applauded+Assumptions</link>
+         <pubDate>Fri, 5 Jun 2015 07:58:12 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433491092</guid>
+                 <description>http://www.last.fm/music/Prefuse+73</description>
+      </item>
+      <item>
+         <title>The Roots – Understand</title>
+         <link>http://www.last.fm/music/The+Roots/_/Understand</link>
+         <pubDate>Fri, 5 Jun 2015 07:53:24 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433490804</guid>
+                 <description>http://www.last.fm/music/The+Roots</description>
+      </item>
+      <item>
+         <title>Gang Starr – Jazz Thing - Video Mix;</title>
+         <link>http://www.last.fm/music/Gang+Starr/_/Jazz+Thing+-+Video+Mix%3B</link>
+         <pubDate>Wed, 3 Jun 2015 11:38:06 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433331486</guid>
+                 <description>http://www.last.fm/music/Gang+Starr</description>
+      </item>
+      <item>
+         <title>Gang Starr – Mass Appeal</title>
+         <link>http://www.last.fm/music/Gang+Starr/_/Mass+Appeal</link>
+         <pubDate>Wed, 3 Jun 2015 11:34:26 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433331266</guid>
+                 <description>http://www.last.fm/music/Gang+Starr</description>
+      </item>
+      <item>
+         <title>Gang Starr – Ex-Girl To Next Girl</title>
+         <link>http://www.last.fm/music/Gang+Starr/_/Ex-Girl+To+Next+Girl</link>
+         <pubDate>Wed, 3 Jun 2015 11:28:49 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433330929</guid>
+                 <description>http://www.last.fm/music/Gang+Starr</description>
+      </item>
+      <item>
+         <title>Gang Starr – Words I Manifest - Remix</title>
+         <link>http://www.last.fm/music/Gang+Starr/_/Words+I+Manifest+-+Remix</link>
+         <pubDate>Wed, 3 Jun 2015 11:23:39 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433330619</guid>
+                 <description>http://www.last.fm/music/Gang+Starr</description>
+      </item>
+      <item>
+         <title>Total – Discipline - Feat. Total</title>
+         <link>http://www.last.fm/music/Total/_/Discipline+-+Feat.+Total</link>
+         <pubDate>Wed, 3 Jun 2015 11:19:22 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433330362</guid>
+                 <description>http://www.last.fm/music/Total</description>
+      </item>
+      <item>
+         <title>Gang Starr – Full Clip</title>
+         <link>http://www.last.fm/music/Gang+Starr/_/Full+Clip</link>
+         <pubDate>Wed, 3 Jun 2015 10:32:53 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433327573</guid>
+                 <description>http://www.last.fm/music/Gang+Starr</description>
+      </item>
+      <item>
+         <title>Gang Starr – Intro</title>
+         <link>http://www.last.fm/music/Gang+Starr/_/Intro</link>
+         <pubDate>Wed, 3 Jun 2015 10:30:59 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433327459</guid>
+                 <description>http://www.last.fm/music/Gang+Starr</description>
+      </item>
+      <item>
+         <title>Gang Starr – Jazz Thing</title>
+         <link>http://www.last.fm/music/Gang+Starr/_/Jazz+Thing</link>
+         <pubDate>Wed, 3 Jun 2015 10:24:40 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433327080</guid>
+                 <description>http://www.last.fm/music/Gang+Starr</description>
+      </item>
+      <item>
+         <title>Gang Starr – Ex-Girl To Next Girl</title>
+         <link>http://www.last.fm/music/Gang+Starr/_/Ex-Girl+To+Next+Girl</link>
+         <pubDate>Wed, 3 Jun 2015 10:20:40 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433326840</guid>
+                 <description>http://www.last.fm/music/Gang+Starr</description>
+      </item>
+      <item>
+         <title>Maribou State – Wallflower</title>
+         <link>http://www.last.fm/music/Maribou+State/_/Wallflower</link>
+         <pubDate>Tue, 2 Jun 2015 13:39:00 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433252340</guid>
+                 <description>http://www.last.fm/music/Maribou+State</description>
+      </item>
+      <item>
+         <title>Maribou State – Steal (feat. Holly Walker)</title>
+         <link>http://www.last.fm/music/Maribou+State/_/Steal+(feat.+Holly+Walker)</link>
+         <pubDate>Tue, 2 Jun 2015 13:35:26 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433252126</guid>
+                 <description>http://www.last.fm/music/Maribou+State</description>
+      </item>
+      <item>
+         <title>Maribou State – Rituals</title>
+         <link>http://www.last.fm/music/Maribou+State/_/Rituals</link>
+         <pubDate>Tue, 2 Jun 2015 13:30:59 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433251859</guid>
+                 <description>http://www.last.fm/music/Maribou+State</description>
+      </item>
+      <item>
+         <title>Maribou State – The Clown (feat. Pedestrian)</title>
+         <link>http://www.last.fm/music/Maribou+State/_/The+Clown+(feat.+Pedestrian)</link>
+         <pubDate>Tue, 2 Jun 2015 13:26:51 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433251611</guid>
+                 <description>http://www.last.fm/music/Maribou+State</description>
+      </item>
+      <item>
+         <title>Maribou State – Home</title>
+         <link>http://www.last.fm/music/Maribou+State/_/Home</link>
+         <pubDate>Tue, 2 Jun 2015 13:23:49 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433251429</guid>
+                 <description>http://www.last.fm/music/Maribou+State</description>
+      </item>
+      <item>
+         <title>Future Islands – The Chase</title>
+         <link>http://www.last.fm/music/Future+Islands/_/The+Chase</link>
+         <pubDate>Tue, 2 Jun 2015 13:19:54 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433251194</guid>
+                 <description>http://www.last.fm/music/Future+Islands</description>
+      </item>
+      <item>
+         <title>Roots Manuva – Like A Drum - prod. Machinedrum</title>
+         <link>http://www.last.fm/music/Roots+Manuva/_/Like+A+Drum+-+prod.+Machinedrum</link>
+         <pubDate>Tue, 2 Jun 2015 13:16:17 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433250977</guid>
+                 <description>http://www.last.fm/music/Roots+Manuva</description>
+      </item>
+      <item>
+         <title>Roots Manuva – Movements</title>
+         <link>http://www.last.fm/music/Roots+Manuva/_/Movements</link>
+         <pubDate>Tue, 2 Jun 2015 13:10:36 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433250636</guid>
+                 <description>http://www.last.fm/music/Roots+Manuva</description>
+      </item>
+      <item>
+         <title>Roots Manuva – Facety 2:11 - prod. Four Tet</title>
+         <link>http://www.last.fm/music/Roots+Manuva/_/Facety+2:11+-+prod.+Four+Tet</link>
+         <pubDate>Tue, 2 Jun 2015 13:07:48 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433250468</guid>
+                 <description>http://www.last.fm/music/Roots+Manuva</description>
+      </item>
+      <item>
+         <title>Maribou State – Wallflower</title>
+         <link>http://www.last.fm/music/Maribou+State/_/Wallflower</link>
+         <pubDate>Sun, 31 May 2015 18:35:34 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1433097334</guid>
+                 <description>http://www.last.fm/music/Maribou+State</description>
+      </item>
+      <item>
+         <title>Prefuse 73 – Still Pretending</title>
+         <link>http://www.last.fm/music/Prefuse+73/_/Still+Pretending</link>
+         <pubDate>Sun, 24 May 2015 19:38:52 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1432496332</guid>
+                 <description>http://www.last.fm/music/Prefuse+73</description>
+      </item>
+      <item>
+         <title>Prefuse 73 – Genderations</title>
+         <link>http://www.last.fm/music/Prefuse+73/_/Genderations</link>
+         <pubDate>Sun, 24 May 2015 19:35:54 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1432496154</guid>
+                 <description>http://www.last.fm/music/Prefuse+73</description>
+      </item>
+      <item>
+         <title>Prefuse 73 – You Are Now Poison</title>
+         <link>http://www.last.fm/music/Prefuse+73/_/You+Are+Now+Poison</link>
+         <pubDate>Sun, 24 May 2015 19:30:20 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1432495820</guid>
+                 <description>http://www.last.fm/music/Prefuse+73</description>
+      </item>
+      <item>
+         <title>Prefuse 73 – Infrared Remix (feat. Sam Dew)</title>
+         <link>http://www.last.fm/music/Prefuse+73/_/Infrared+Remix+(feat.+Sam+Dew)</link>
+         <pubDate>Sun, 24 May 2015 19:25:38 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1432495538</guid>
+                 <description>http://www.last.fm/music/Prefuse+73</description>
+      </item>
+      <item>
+         <title>Prefuse 73 – Open Nerve Farewells</title>
+         <link>http://www.last.fm/music/Prefuse+73/_/Open+Nerve+Farewells</link>
+         <pubDate>Sun, 24 May 2015 19:11:16 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1432494676</guid>
+                 <description>http://www.last.fm/music/Prefuse+73</description>
+      </item>
+      <item>
+         <title>Prefuse 73 – Mojav Mating Call</title>
+         <link>http://www.last.fm/music/Prefuse+73/_/Mojav+Mating+Call</link>
+         <pubDate>Sun, 24 May 2015 19:05:55 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1432494355</guid>
+                 <description>http://www.last.fm/music/Prefuse+73</description>
+      </item>
+      <item>
+         <title>Prefuse 73 – See More Than Just Stars (feat. Helado Negro)</title>
+         <link>http://www.last.fm/music/Prefuse+73/_/See+More+Than+Just+Stars+(feat.+Helado+Negro)</link>
+         <pubDate>Sun, 24 May 2015 19:01:27 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1432494087</guid>
+                 <description>http://www.last.fm/music/Prefuse+73</description>
+      </item>
+      <item>
+         <title>Prefuse 73 – 140 Jabs Interlude (feat. Milo &amp; Busdriver)</title>
+         <link>http://www.last.fm/music/Prefuse+73/_/140+Jabs+Interlude+(feat.+Milo+&amp;+Busdriver)</link>
+         <pubDate>Sun, 24 May 2015 18:59:34 +0000</pubDate>
+         <guid>http://www.last.fm/user/ceetronic#1432493974</guid>
+                 <description>http://www.last.fm/music/Prefuse+73</description>
+      </item>
+   </channel>
+</rss>

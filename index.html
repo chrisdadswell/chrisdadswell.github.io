@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Scriven</title>
+  <meta name="description" content="This is the blog of Christian Dadswell
+">
+
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/fa.css">
+  <link rel="stylesheet" href="/assets/css/hover.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Imprima">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <script src="/assets/js/search.js" type="text/javascript"></script>
+  <script src="/assets/js/jquery.js" type="text/javascript"></script>
+  <link rel="canonical" href="http://scriven.chrisdadswell.co.uk/">
+  <link rel="alternate" type="application/rss+xml" title="Scriven" href="http://scriven.chrisdadswell.co.uk/feed.xml">
+  
+</head>
+
+  <body>
+    <div class="drop-site-header"></div>
+<header class="site-header">
+  
+  <div class="wrapper">
+    <div id="header-block">
+        <a class="site-title" href="/">Scriven</a>
+        <div class="header-image"><img src="http://blog.chrisdadswell.co.uk:8181/assets/images/jackdaw.png" alt="Jackdaw inverse logo" align="right" height="100px" width="100px"></div>
+    </div>
+    <div class="copyright">© Chris Dadswell 2015</div>
+    <div id="search-container">
+    <input type="text" id="search-input" placeholder=" Search... ">
+    <ul id="results-container"></ul>
+    <p></p>
+    </div>
+    
+    <h1 class="page-heading"><a href="http://scriven.chrisdadswell.co.uk">recent</a> • <a href="http://scriven.chrisdadswell.co.uk/archive">archive</a> • <a href="http://scriven.chrisdadswell.co.uk/linklog">linklog</a> • <a href="http://scriven.chrisdadswell.co.uk/feeds/">feeds</a> • <a href="http://scriven.chrisdadswell.co.uk/about">about</a></h1>
+    <hr class="hr-head">
+    <p></p>
+  </div>
+
+
+<script>
+$(document).ready(function(){
+
+	// hide #back-top first
+	$("#back-top").hide();
+	
+	// fade in #back-top
+	$(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('#back-top').fadeIn();
+			} else {
+				$('#back-top').fadeOut();
+			}
+		});
+
+		// scroll body to 0px on click
+		$('#back-top a').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 800);
+			return false;
+		});
+	});
+
+});
+</script>
+
+</header>
+
+    <div class="page-content">
+      <div class="wrapper">
+        <p id="back-top">
+    <a href="#top"><span></span></a>
+</p>
+
+<div class="home">
+    <ul class="post-list">
+    
+      <li>
+        <i class='fa fa-calendar-o'></i> <span class="post-meta">May 28, 2015</span> | <a href="http://scriven.chrisdadswell.co.uk/posts/powercli-get-distributedportgroups-from-dvswitch#disqus_thread" data-disqus-identifier="/posts/powercli-get-distributedportgroups-from-dvswitch"><i class='fa fa-comments-o'></i></a>
+        <h2>
+          <a class="post-link" href="/posts/powercli-get-distributedportgroups-from-dvswitch">PowerCLI - Getting distributed port groups from a dvSwitch</a>
+          <div class="post-excerpt"><p>A small segment of PowerCLI that helps you to retrieve distributed virtual portgroups from a distributed virtual switch.</p>
+
+<pre><code>get-vmhost -Name &lt;hostname&gt; | Get-VirtualPortGroup | sort Name | Select Name, @{N="VLANId";E={$_.Extensiondata.Config.DefaultPortCOnfig.Vlan.VlanId}}
+</code></pre>
+
+</div>
+          <a class="post-more" href="/posts/powercli-get-distributedportgroups-from-dvswitch"><i class='fa fa-ellipsis-h hvr-icon-wobble-horizontal'></i></a>
+        </h2>
+      </li>
+    
+      <li>
+        <i class='fa fa-calendar-o'></i> <span class="post-meta">May 13, 2015</span> | <a href="http://scriven.chrisdadswell.co.uk/posts/getting-jekyll-to-watch-when-detached#disqus_thread" data-disqus-identifier="/posts/getting-jekyll-to-watch-when-detached"><i class='fa fa-comments-o'></i></a>
+        <h2>
+          <a class="post-link" href="/posts/getting-jekyll-to-watch-when-detached">Running 'jekyll serve --detach' in the background without console output</a>
+          <div class="post-excerpt"><p>In order for Jekyll to serve up the pages you create you need to run its server component.
+The usual way to do this is by running the following at the command line;</p>
+
+<pre><code>jekyll serve
+</code></pre>
+
+<p>In Jekyll 2.5.x this will run the web server and a watcher by default. The watcher checks for changes that are being made on the fly and continues to serve.</p>
+
+<blockquote>
+  <p>The above command is run on the presumption that your source, destination and ports settings exist in the _config.yml file at the root of your site</p>
+</blockquote>
+
+<p>This process will not run in the background. Not ideal if you either want to log off the terminal or edit the blog at the terminal with vi or nano or whatever.</p>
+
+</div>
+          <a class="post-more" href="/posts/getting-jekyll-to-watch-when-detached"><i class='fa fa-ellipsis-h hvr-icon-wobble-horizontal'></i></a>
+        </h2>
+      </li>
+    
+      <li>
+        <i class='fa fa-calendar-o'></i> <span class="post-meta">Apr 29, 2015</span> | <a href="http://scriven.chrisdadswell.co.uk/posts/powercli-getting-and-setting-round-robin-pathing-policies#disqus_thread" data-disqus-identifier="/posts/powercli-getting-and-setting-round-robin-pathing-policies"><i class='fa fa-comments-o'></i></a>
+        <h2>
+          <a class="post-link" href="/posts/powercli-getting-and-setting-round-robin-pathing-policies">PowerCLI - Getting and setting round-robin pathing policies</a>
+          <div class="post-excerpt"><p>The following functions can be used to retrieve (Get-RoundRobin) whether particular LUN IDs are using a Round Robin pathing policy.  You can then set (Set-RoundRobin) a round robin pathing policy on the LUN IDs if your storage processor supports it.</p>
+
+<p>Round Robin Pathing Policies from the <a href="http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&amp;cmd=displayKC&amp;externalId=1011340">VMware site</a></p>
+
+<blockquote>
+  <p>Round Robin (RR): Uses an automatic path selection rotating through all available paths, enabling the distribution of load across the configured paths.
+	For Active/Passive storage arrays, only the paths to the active controller will be used in the Round Robin policy.
+	For Active/Active storage arrays, all paths will be used in the Round Robin policy.</p>
+</blockquote>
+
+<p>To run the scripts you will need your Vendor LUN ID or Device Display Name.<br />
+A LUN ID looks a bit like this:</p>
+
+<blockquote>
+  <p>naa.123456789…..</p>
+</blockquote>
+
+</div>
+          <a class="post-more" href="/posts/powercli-getting-and-setting-round-robin-pathing-policies"><i class='fa fa-ellipsis-h hvr-icon-wobble-horizontal'></i></a>
+        </h2>
+      </li>
+    
+      <li>
+        <i class='fa fa-calendar-o'></i> <span class="post-meta">Apr 29, 2015</span> | <a href="http://scriven.chrisdadswell.co.uk/posts/powercli-creating-local-users-and-groups-on-esxi-55#disqus_thread" data-disqus-identifier="/posts/powercli-creating-local-users-and-groups-on-esxi-55"><i class='fa fa-comments-o'></i></a>
+        <h2>
+          <a class="post-link" href="/posts/powercli-creating-local-users-and-groups-on-esxi-55">PowerCLI - Creating local users and groups on ESXi 5.5</a>
+          <div class="post-excerpt"><p>The following function creates a user and role that allows the power up of VMs on a host. I use this account when vCenter is out of action and I need to run other functions to locate user VMs and power them up on particular hosts.</p>
+
+<p>This function requires that you have the root password to the ESXi host.</p>
+
+<pre><code>Write-LocalHostUser
+	Function Write-LocalHostUser() {
+	[CmdletBinding()]
+	Param(
+		[string]$hostname
+	)
+	$creds=Get-Credential -Credential "root"
+	$hostname=$hostname + "&lt;FQDN&gt;"
+	$hostname
+	Connect-VIServer -Server $hostname -Protocol https -Credential $creds
+	New-VMHostAccount -Id "&lt;username&gt;" -Password "&lt;password&gt;" -Description "Account to be used to power up VMs in the event there is no vCenter."
+	New-VIRole -Name "VM Power On Only" -Privilege “Power On”
+	Set-VIRole -Role "VM Power On Only" -AddPrivilege "Assign network"
+	New-VIPermission -Entity $hostname -Principal "powerup" -Role “VM Power On Only” -Propagate:$true
+	}
+</code></pre>
+
+</div>
+          <a class="post-more" href="/posts/powercli-creating-local-users-and-groups-on-esxi-55"><i class='fa fa-ellipsis-h hvr-icon-wobble-horizontal'></i></a>
+        </h2>
+      </li>
+    
+  </ul>
+  <div class="last-update">Last updated: 2015:June:Friday:05:57:09:57</div>
+</div>
+
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'scriven-blog'; // required: replace example with your forum shortname
+var disqus_identifier = '';
+var disqus_url = 'http://scriven.chrisdadswell.co.uk';
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+      </div>
+    </div>
+
+    <hr class="hr-footer">
+<footer>
+        <div id="social-buttons">
+        <a href="http://twitter.com/chrisdadswell"><i class='fa fa-2x fa-twitter fa-border hvr-sink'></i></a> 
+        <a href="http://www.linkedin.com/"><i class='fa fa-2x fa-linkedin fa-border hvr-sink'></i></a>
+        <a href="https://github.com/chrisdadswell"><i class='fa fa-2x fa-github fa-border hvr-sink'></i></a>
+        <a href="/feed.xml"><i class='fa fa-2x fa-rss fa-border hvr-sink'></i></a>
+        <a href="mailto:chrisdadswell@gmail.com?Subject=Mail from the Scriven blog" target="_top"><i class='fa fa-2x fa-envelope fa-border hvr-sink'></i></a>
+    </div>
+    <div id="slogan"></div>
+</footer>
+
+    <script>
+    $(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: "http://blog.chrisdadswell.co.uk:8181/assets/files/slogans.txt",
+        dataType: "text",
+        success: function(data) {processData(data);}
+        });
+    });
+    
+    function processData(allText) {
+        var allTextLines = allText.split(/\r\n|\n/);
+        var slogans = [];
+    
+        for (var i=0; i<allTextLines.length; i++) {
+            var slogi = allTextLines[i];
+            slogans.push(slogi);
+        }
+        var word = slogans[Math.floor(Math.random() * slogans.length)];
+        document.getElementById("slogan").innerHTML= word;
+    }
+    </script>
+    <script type="text/javascript">
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: 'search.json',
+      searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+      noResultsText: 'No results found',
+      limit: 10,
+      fuzzy: false,
+    })
+
+  </body>
+</html>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scriven</title>
+    <description>This is the blog of Christian Dadswell
+</description>
+    <link>http://scriven.chrisdadswell.co.uk/</link>
+    <atom:link href="http://scriven.chrisdadswell.co.uk/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 06 Jun 2015 14:54:17 +0100</pubDate>
+    <lastBuildDate>Sat, 06 Jun 2015 14:54:17 +0100</lastBuildDate>
+    <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>PowerCLI - Getting distributed port groups from a dvSwitch</title>
+        <description>&lt;p&gt;A small segment of PowerCLI that helps you to retrieve distributed virtual portgroups from a distributed virtual switch.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;get-vmhost -Name &amp;lt;hostname&amp;gt; | Get-VirtualPortGroup | sort Name | Select Name, @{N=&quot;VLANId&quot;;E={$_.Extensiondata.Config.DefaultPortCOnfig.Vlan.VlanId}}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+        <pubDate>Thu, 28 May 2015 22:49:46 +0100</pubDate>
+        <link>http://scriven.chrisdadswell.co.uk/posts/powercli-get-distributedportgroups-from-dvswitch</link>
+        <guid isPermaLink="true">http://scriven.chrisdadswell.co.uk/posts/powercli-get-distributedportgroups-from-dvswitch</guid>
+        
+        <category>powershell</category>
+        
+        <category>powercli</category>
+        
+        <category>esxi</category>
+        
+        <category>vmware</category>
+        
+        <category>dvswitch</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Running &#39;jekyll serve --detach&#39; in the background without console output</title>
+        <description>&lt;p&gt;In order for Jekyll to serve up the pages you create you need to run its server component.
+The usual way to do this is by running the following at the command line;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In Jekyll 2.5.x this will run the web server and a watcher by default. The watcher checks for changes that are being made on the fly and continues to serve.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The above command is run on the presumption that your source, destination and ports settings exist in the _config.yml file at the root of your site&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This process will not run in the background. Not ideal if you either want to log off the terminal or edit the blog at the terminal with vi or nano or whatever.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;So Jekyll provides a way to detach the Jekyll serve process from the terminal&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jekyll serve --detach
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;On the surface this works great, but output from Jekyll is displayed when viewing files within a terminal editor, such as vi or nano.&lt;/p&gt;
+
+&lt;p&gt;When I first started out hacking this blog together I performed most tasks at the terminal and so needed to be able to run Jekyll in the background without distraction. I tried the following;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jekyll serve --detach &amp;amp; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Even though the process went to the background, I as still seeing output coming from the Jekyll serve process. This was pretty frustrating when editing files with vi.&lt;/p&gt;
+
+&lt;p&gt;So the next step was to set up some redirection thus getting rid of the distracting Jekyll process output.&lt;/p&gt;
+
+&lt;p&gt;Here is the command line including redirection;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jekyll serve &amp;gt; /dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2&amp;gt; redirects stderr to an (unspecified) file, appending &amp;amp;1 redirects stderr to stdout with the &amp;amp; sending the process into the background.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This command also allows me to disconnect from the session and keep the Jekyll server/watcher running.&lt;/p&gt;
+
+&lt;p&gt;It’s a shame that there is no way (that I can find) to run Jekyll, detached without the output.&lt;/p&gt;
+
+&lt;p&gt;There are other ways to skin this cat, you could install ‘screen’ and run the process in that, but its more faffy.&lt;/p&gt;
+
+&lt;p&gt;Maybe Ruby offers a way to run processes in the background like ‘forever’ does for Node?&lt;/p&gt;
+
+&lt;p&gt;Answers on a postcard…&lt;/p&gt;
+</description>
+        <pubDate>Wed, 13 May 2015 23:03:46 +0100</pubDate>
+        <link>http://scriven.chrisdadswell.co.uk/posts/getting-jekyll-to-watch-when-detached</link>
+        <guid isPermaLink="true">http://scriven.chrisdadswell.co.uk/posts/getting-jekyll-to-watch-when-detached</guid>
+        
+        <category>jekyll</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>PowerCLI - Getting and setting round-robin pathing policies</title>
+        <description>&lt;p&gt;The following functions can be used to retrieve (Get-RoundRobin) whether particular LUN IDs are using a Round Robin pathing policy.  You can then set (Set-RoundRobin) a round robin pathing policy on the LUN IDs if your storage processor supports it.&lt;/p&gt;
+
+&lt;p&gt;Round Robin Pathing Policies from the &lt;a href=&quot;http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&amp;amp;cmd=displayKC&amp;amp;externalId=1011340&quot;&gt;VMware site&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Round Robin (RR): Uses an automatic path selection rotating through all available paths, enabling the distribution of load across the configured paths.
+	For Active/Passive storage arrays, only the paths to the active controller will be used in the Round Robin policy.
+	For Active/Active storage arrays, all paths will be used in the Round Robin policy.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To run the scripts you will need your Vendor LUN ID or Device Display Name.&lt;br /&gt;
+A LUN ID looks a bit like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;naa.123456789…..&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;To retrieve a list of LUN IDs run the following command from an ESXi host;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;esxcli storage nmp device list&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Note the Device Display Name for your vendor includes a naa.xxxxxxxx ID. Record the first 12 numbers after ‘naa’ as we will use this in the scripts.&lt;/p&gt;
+
+&lt;p&gt;Get-RoundRobin&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Get-RoundRobin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;  
+		&lt;span class=&quot;nv&quot;&gt;$vcenter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Read-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Enter a vCenter&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Connect-vCenter&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$vcenter&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Connecting to $vcenter ...&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Getting clusters available for $vcenter&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Get-Cluster&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Select-Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Property&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ft&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-HideTableHeaders&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$cluster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Read-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Enter a cluster name&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Write-host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Finding &amp;lt;VENDOR_NAME&amp;gt; LUNs (naa.&amp;lt;VENDOR_ID_PATTERN&amp;gt;*) on hosts within cluster $cluster without a round robin pathing policy ... You may twiddle thumbs now.&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Get-VMHost&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Location&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$cluster&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Get-ScsiLun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-CanonicalName&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;naa.&amp;lt;VENDOR_ID_PATTERN&amp;gt;*&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Select-Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Property&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CanonicalName&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MultipathPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-ne&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;RoundRobin&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;measure-object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-line&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Completed&amp;quot;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Set-RoundRobin&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Set-RoundRobin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$vcenter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Read-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Enter a vCenter&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Connect-vCenter&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$vcenter&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Connecting to $vcenter ...&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Getting clusters available for $vcenter&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Get-Cluster&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Select-Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Property&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ft&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-HideTableHeaders&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$cluster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Read-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Enter a cluster name&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Write-host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Finding &amp;lt;VENDOR_NAME&amp;gt; LUNs (naa.&amp;lt;VENDOR_ID_PATTERN&amp;gt;*) on hosts within cluster $cluster without RR pathing policy and setting to round robin ... You may twiddle thumbs now.&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Get-VMHost&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Location&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$cluster&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Get-ScsiLun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-CanonicalName&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;naa.naa.&amp;lt;VENDOR_ID_PATTERN&amp;gt;*&amp;lt;VENDOR_ID_PATTERN&amp;gt;*&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Where&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MultipathPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-ne&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;RoundRobin&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Set-ScsiLun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-MultipathPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;RoundRobin&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Completed&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Write-host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Finding LUNs without RR pathing policy&amp;quot;&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Get-VMHost&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Location&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$cluster&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Get-ScsiLun&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-CanonicalName&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;naa.&amp;lt;VENDOR_ID_PATTERN&amp;gt;*&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Where&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MultipathPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-ne&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;RoundRobin&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;Write-Host&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Completed&amp;quot;&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Connect-vCenter&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-powershell&quot; data-lang=&quot;powershell&quot;&gt;&lt;span class=&quot;k&quot;&gt;Function&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Connect-vCenter&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;Param&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        	&lt;span class=&quot;no&quot;&gt;[string]&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$vcenter&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        	&lt;span class=&quot;c&quot;&gt;# GET VSPHERE VCENTER CREDENTIALS&lt;/span&gt;
+	        &lt;span class=&quot;nv&quot;&gt;$creds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Get-Credential&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Credential&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;lt;DOMAIN_CREDENTIALS&amp;gt;&amp;quot;&lt;/span&gt;
+        	&lt;span class=&quot;nb&quot;&gt;Connect-VIServer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Server&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$vcenter&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Protocol&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;https&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-Credential&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$creds&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;-warningaction&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SilentlyContinue&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;As a bonus, you can also set the IOPS to 1 on the PSP (Path Selection Policy).&lt;/p&gt;
+
+&lt;p&gt;Here is a ESXi command line one liner to GET the current iops set on a Round Robin PSP&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; i in &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;ls /vmfs/devices/disks &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; grep naa.&amp;lt;VENDOR_ID_PATTERN&amp;gt;&lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;grep -v :&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; esxcli storage nmp psp roundrobin deviceconfig get --device&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Here is an ESXi command line one liner to SET the iops to 1 from the default of 1000 (check with your vendor before doing this) on a Round Robin PSP&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; i in &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;ls /vmfs/devices/disks &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; grep naa.&amp;lt;VENDOR_ID_PATTERN&amp;gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; esxcli storage nmp psp roundrobin deviceconfig &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt; --device&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; --iops&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; --type&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;iops&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 29 Apr 2015 22:45:46 +0100</pubDate>
+        <link>http://scriven.chrisdadswell.co.uk/posts/powercli-getting-and-setting-round-robin-pathing-policies</link>
+        <guid isPermaLink="true">http://scriven.chrisdadswell.co.uk/posts/powercli-getting-and-setting-round-robin-pathing-policies</guid>
+        
+        <category>powershell</category>
+        
+        <category>powercli</category>
+        
+        <category>esxi</category>
+        
+        <category>vmware</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>PowerCLI - Creating local users and groups on ESXi 5.5</title>
+        <description>&lt;p&gt;The following function creates a user and role that allows the power up of VMs on a host. I use this account when vCenter is out of action and I need to run other functions to locate user VMs and power them up on particular hosts.&lt;/p&gt;
+
+&lt;p&gt;This function requires that you have the root password to the ESXi host.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Write-LocalHostUser
+	Function Write-LocalHostUser() {
+	[CmdletBinding()]
+	Param(
+		[string]$hostname
+	)
+	$creds=Get-Credential -Credential &quot;root&quot;
+	$hostname=$hostname + &quot;&amp;lt;FQDN&amp;gt;&quot;
+	$hostname
+	Connect-VIServer -Server $hostname -Protocol https -Credential $creds
+	New-VMHostAccount -Id &quot;&amp;lt;username&amp;gt;&quot; -Password &quot;&amp;lt;password&amp;gt;&quot; -Description &quot;Account to be used to power up VMs in the event there is no vCenter.&quot;
+	New-VIRole -Name &quot;VM Power On Only&quot; -Privilege “Power On”
+	Set-VIRole -Role &quot;VM Power On Only&quot; -AddPrivilege &quot;Assign network&quot;
+	New-VIPermission -Entity $hostname -Principal &quot;powerup&quot; -Role “VM Power On Only” -Propagate:$true
+	}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;!--more--&gt;
+</description>
+        <pubDate>Wed, 29 Apr 2015 22:45:46 +0100</pubDate>
+        <link>http://scriven.chrisdadswell.co.uk/posts/powercli-creating-local-users-and-groups-on-esxi-55</link>
+        <guid isPermaLink="true">http://scriven.chrisdadswell.co.uk/posts/powercli-creating-local-users-and-groups-on-esxi-55</guid>
+        
+        <category>powershell</category>
+        
+        <category>powercli</category>
+        
+        <category>esxi</category>
+        
+        <category>vmware</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

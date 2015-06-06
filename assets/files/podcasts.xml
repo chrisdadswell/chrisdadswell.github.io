@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<opml version="1.0">
+  <head>
+    <title>Pocket Casts Feeds</title>
+  </head>
+  <body>
+    <outline text="feeds">
+      <outline type="rss" text="VMware Communities Roundtable" xmlUrl="http://recordings.talkshoe.com/rss19367.xml" />
+      <outline type="rss" text="Mastertapes" xmlUrl="http://www.bbc.co.uk/programmes/b021mjc4/episodes/downloads.rss" />
+      <outline type="rss" text="The Smartest Man in the World" xmlUrl="http://feeds.feedburner.com/TheSmartest" />
+      <outline type="rss" text="Codes that Changed the World" xmlUrl="http://downloads.bbc.co.uk/podcasts/radio4/codes/rss.xml" />
+      <outline type="rss" text="Discovery" xmlUrl="http://www.bbc.co.uk/programmes/p002w557/episodes/downloads.rss" />
+      <outline type="rss" text="Topical" xmlUrl="http://podcasts.jellystyle.com/topical/rss" />
+      <outline type="rss" text="Friday Night Comedy from BBC Radio 4" xmlUrl="http://downloads.bbc.co.uk/podcasts/radio4/fricomedy/rss.xml" />
+      <outline type="rss" text="Documentary of the Week" xmlUrl="http://www.bbc.co.uk/programmes/p02pc9qx/episodes/downloads.rss" />
+      <outline type="rss" text="GhostlyCast" xmlUrl="http://feeds.feedburner.com/ghostly/podcast" />
+      <outline type="rss" text="Nature's Voice" xmlUrl="http://naturesvoice.rspb.libsynpro.com/rss" />
+      <outline type="rss" text="The Digital Human" xmlUrl="http://downloads.bbc.co.uk/podcasts/radio4/dh/rss.xml" />
+      <outline type="rss" text="Iterate" xmlUrl="http://feeds.feedburner.com/Iterate" />
+      <outline type="rss" text="The Optical" xmlUrl="http://feedpress.me/opticalpodcast" />
+      <outline type="rss" text="Making History" xmlUrl="http://downloads.bbc.co.uk/podcasts/radio4/mhistory/rss.xml" />
+      <outline type="rss" text="Software Gone Wild by ipSpace.net" xmlUrl="http://feeds.feedburner.com/SoftwareGoneWild" />
+      <outline type="rss" text="From Our Own Correspondent" xmlUrl="http://www.bbc.co.uk/programmes/p02nrtpm/episodes/downloads.rss" />
+      <outline type="rss" text="Word of Mouth" xmlUrl="http://www.bbc.co.uk/programmes/b006qtnz/episodes/downloads.rss" />
+      <outline type="rss" text="Solid Steel" xmlUrl="http://ninjatune.net/solidsteel/rss.xml" />
+      <outline type="rss" text="The Film Programme" xmlUrl="http://downloads.bbc.co.uk/podcasts/radio4/film/rss.xml" />
+      <outline type="rss" text="Online VMware Training" xmlUrl="http://www.screencast.com/users/esloof/folders/Online%20VMware%20Training/itunes" />
+      <outline type="rss" text="BBC Inside Science" xmlUrl="http://downloads.BBC.co.uk/podcasts/radio4/inscience/rss.xml" />
+      <outline type="rss" text="Bleep Podcast" xmlUrl="http://podcast.bleep.com/weekly_podcast_itunes.xml" />
+      <outline type="rss" text="Review" xmlUrl="http://feeds.feedburner.com/adhocshow" />
+      <outline type="rss" text="Packet Pushers – Weekly Podcast" xmlUrl="http://packetpushers.net/category/weekly-show/feed/" />
+      <outline type="rss" text="Ninja Tune Podcast" xmlUrl="http://www.ninjatune.net/ninjacast.xml" />
+      <outline type="rss" text="The Cloudcast (.net) - Weekly Cloud Computing Podcast" xmlUrl="http://www.buzzsprout.com/3195.rss" />
+      <outline type="rss" text="A History of Ideas" xmlUrl="http://www.bbc.co.uk/programmes/b04bwydw/episodes/downloads.rss" />
+      <outline type="rss" text="Tech Weekly" xmlUrl="http://www.theguardian.com/technology/series/techweekly/podcast.xml" />
+      <outline type="rss" text="Photography Tips &amp; Tricks" xmlUrl="http://kelbytv.com/photographytnt/video/" />
+      <outline type="rss" text="The Cipher" xmlUrl="http://theciphershow.com/feed/" />
+      <outline type="rss" text="Desert Island Discs with Kirsty Young" xmlUrl="http://downloads.bbc.co.uk/podcasts/radio4/did/rss.xml" />
+      <outline type="rss" text="A History of Ideas animations" xmlUrl="http://downloads.bbc.co.uk/podcasts/vodcasts/ahoi/index.rss" />
+      <outline type="rss" text="Front Row Daily" xmlUrl="http://downloads.bbc.co.uk/podcasts/radio4/frontrow/rss.xml" />
+      <outline type="rss" text="The Infinite Monkey Cage" xmlUrl="http://www.bbc.co.uk/programmes/b00snr0w/episodes/downloads.rss" />
+      <outline type="rss" text="Turntable Lab Radio" xmlUrl="http://audio.turntablelab.com/realfiles/ttlradio/ttlradio-rss.xml" />
+    </outline>
+  </body>
+</opml>

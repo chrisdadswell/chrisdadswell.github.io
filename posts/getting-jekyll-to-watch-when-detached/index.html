@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Running 'jekyll serve --detach' in the background without console output</title>
+  <meta name="description" content="In order for Jekyll to serve up the pages you create you need to run its server component.The usual way to do this is by running the following at the command...">
+
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/fa.css">
+  <link rel="stylesheet" href="/assets/css/hover.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Imprima">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Code+Pro">
+  <script src="/assets/js/search.js" type="text/javascript"></script>
+  <script src="/assets/js/jquery.js" type="text/javascript"></script>
+  <link rel="canonical" href="http://scriven.chrisdadswell.co.uk/posts/getting-jekyll-to-watch-when-detached">
+  <link rel="alternate" type="application/rss+xml" title="Scriven" href="http://scriven.chrisdadswell.co.uk/feed.xml">
+  
+</head>
+
+  <body>
+    <div class="drop-site-header"></div>
+<header class="site-header">
+  
+  <div class="wrapper">
+    <div id="header-block">
+        <a class="site-title" href="/">Scriven</a>
+        <div class="header-image"><img src="http://blog.chrisdadswell.co.uk:8181/assets/images/jackdaw.png" alt="Jackdaw inverse logo" align="right" height="100px" width="100px"></div>
+    </div>
+    <div class="copyright">© Chris Dadswell 2015</div>
+    <div id="search-container">
+    <input type="text" id="search-input" placeholder=" Search... ">
+    <ul id="results-container"></ul>
+    <p></p>
+    </div>
+    
+    <h1 class="page-heading"><a href="http://scriven.chrisdadswell.co.uk">recent</a> • <a href="http://scriven.chrisdadswell.co.uk/archive">archive</a> • <a href="http://scriven.chrisdadswell.co.uk/linklog">linklog</a> • <a href="http://scriven.chrisdadswell.co.uk/feeds/">feeds</a> • <a href="http://scriven.chrisdadswell.co.uk/about">about</a></h1>
+    <hr class="hr-head">
+    <p></p>
+  </div>
+
+
+<script>
+$(document).ready(function(){
+
+	// hide #back-top first
+	$("#back-top").hide();
+	
+	// fade in #back-top
+	$(function () {
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 100) {
+				$('#back-top').fadeIn();
+			} else {
+				$('#back-top').fadeOut();
+			}
+		});
+
+		// scroll body to 0px on click
+		$('#back-top a').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 800);
+			return false;
+		});
+	});
+
+});
+</script>
+
+</header>
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Running 'jekyll serve --detach' in the background without console output</h1>
+    <div class="post-meta">
+    <i class='fa fa-calendar-o'></i> <time datetime="2015-05-13">May 13, 2015 | <i class='fa fa-tags hvr-wobble-horizontal'></i> <a class="tag_list_link" href="/tag/jekyll">jekyll</a> | <a href="#disqus_thread"><i class='fa fa-comments-o'></i></a>
+    </time>
+</div>
+  </header>
+  <article class="post-content">
+    <p>In order for Jekyll to serve up the pages you create you need to run its server component.
+The usual way to do this is by running the following at the command line;</p>
+
+<pre><code>jekyll serve
+</code></pre>
+
+<p>In Jekyll 2.5.x this will run the web server and a watcher by default. The watcher checks for changes that are being made on the fly and continues to serve.</p>
+
+<blockquote>
+  <p>The above command is run on the presumption that your source, destination and ports settings exist in the _config.yml file at the root of your site</p>
+</blockquote>
+
+<p>This process will not run in the background. Not ideal if you either want to log off the terminal or edit the blog at the terminal with vi or nano or whatever.</p>
+
+<!--more-->
+
+<p>So Jekyll provides a way to detach the Jekyll serve process from the terminal</p>
+
+<pre><code>jekyll serve --detach
+</code></pre>
+
+<p>On the surface this works great, but output from Jekyll is displayed when viewing files within a terminal editor, such as vi or nano.</p>
+
+<p>When I first started out hacking this blog together I performed most tasks at the terminal and so needed to be able to run Jekyll in the background without distraction. I tried the following;</p>
+
+<pre><code>jekyll serve --detach &amp; 
+</code></pre>
+
+<p>Even though the process went to the background, I as still seeing output coming from the Jekyll serve process. This was pretty frustrating when editing files with vi.</p>
+
+<p>So the next step was to set up some redirection thus getting rid of the distracting Jekyll process output.</p>
+
+<p>Here is the command line including redirection;</p>
+
+<pre><code>jekyll serve &gt; /dev/null 2&gt;&amp;1 &amp;
+</code></pre>
+
+<blockquote>
+  <p>2&gt; redirects stderr to an (unspecified) file, appending &amp;1 redirects stderr to stdout with the &amp; sending the process into the background.</p>
+</blockquote>
+
+<p>This command also allows me to disconnect from the session and keep the Jekyll server/watcher running.</p>
+
+<p>It’s a shame that there is no way (that I can find) to run Jekyll, detached without the output.</p>
+
+<p>There are other ways to skin this cat, you could install ‘screen’ and run the process in that, but its more faffy.</p>
+
+<p>Maybe Ruby offers a way to run processes in the background like ‘forever’ does for Node?</p>
+
+<p>Answers on a postcard…</p>
+
+  </article>
+  
+  <p id="back-top">
+	<a href="#top"><span></span></a>
+  </p>
+  
+    <div id="twitter"</div>
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="chrisdadswell" data-hashtags="Scriven">Tweet</a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  <p></p>
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'scriven-blog';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+      </div>
+    </div>
+
+    <hr class="hr-footer">
+<footer>
+        <div id="social-buttons">
+        <a href="http://twitter.com/chrisdadswell"><i class='fa fa-2x fa-twitter fa-border hvr-sink'></i></a> 
+        <a href="http://www.linkedin.com/"><i class='fa fa-2x fa-linkedin fa-border hvr-sink'></i></a>
+        <a href="https://github.com/chrisdadswell"><i class='fa fa-2x fa-github fa-border hvr-sink'></i></a>
+        <a href="/feed.xml"><i class='fa fa-2x fa-rss fa-border hvr-sink'></i></a>
+        <a href="mailto:chrisdadswell@gmail.com?Subject=Mail from the Scriven blog" target="_top"><i class='fa fa-2x fa-envelope fa-border hvr-sink'></i></a>
+    </div>
+    <div id="slogan"></div>
+</footer>
+
+    <script>
+    $(document).ready(function() {
+    $.ajax({
+        type: "GET",
+        url: "http://blog.chrisdadswell.co.uk:8181/assets/files/slogans.txt",
+        dataType: "text",
+        success: function(data) {processData(data);}
+        });
+    });
+    
+    function processData(allText) {
+        var allTextLines = allText.split(/\r\n|\n/);
+        var slogans = [];
+    
+        for (var i=0; i<allTextLines.length; i++) {
+            var slogi = allTextLines[i];
+            slogans.push(slogi);
+        }
+        var word = slogans[Math.floor(Math.random() * slogans.length)];
+        document.getElementById("slogan").innerHTML= word;
+    }
+    </script>
+    <script type="text/javascript">
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: 'search.json',
+      searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+      noResultsText: 'No results found',
+      limit: 10,
+      fuzzy: false,
+    })
+
+  </body>
+</html>
